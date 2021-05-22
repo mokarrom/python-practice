@@ -1,0 +1,34 @@
+# Example: https://gist.github.com/marcelog/f044da2935bb7d32d0fe6442647a75cd
+version: 0.2
+
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    runtime-versions:
+      python: 3.8
+    commands:
+      - pip install --upgrade pip
+      - pip install poetry
+      - poetry config http-basic.tr $TR_ARTIFACTORY_USER $TR_ARTIFACTORY_PASS
+      - poetry install
+      - poetry run pre-commit install
+  pre_build:
+    commands:
+      - poetry run poe test
+  build:
+    commands:
+      - poetry run poe release
+  # post_build:
+  #   commands:
+artifacts:
+  files:
+    - docs/**/*
+    - htmlcov/coverage_html/**/*
+  discard-paths: no
+reports:
+  tests:
+    files:
+      - htmlcov/pytest_junit.xml
+    discard-paths: yes
+    file-format: JunitXml
