@@ -50,8 +50,8 @@ importlib-metadata = {version = "3.7.0", markers = "python_version < \"3.8\""}
 # https://thehub.thomsonreuters.com/docs/DOC-2517222#jive_content_id_Using_pip
 # NOTE: poetry search doesn't work with private repos but you can use pip search, then poetry add|install
 name = "tr"
-url = "https://tr1.jfrog.io/artifactory/api/pypi/pypi/simple"
-default = false
+url = "https://pypi.org/"
+default = true
 
 [tool.black]
 # See other configurations available at https://pypi.org/project/black/
@@ -65,7 +65,7 @@ pytest = "pytest --cache-clear --junitxml=htmlcov/pytest_junit.xml --html=htmlco
 build-docs = "pdoc --html src/misc -o docs/ --force"
 host-local-docs = "pdoc src/misc --http localhost:7999"
 build-wheel = "poetry build --format wheel"  # sdist is outdated and typically unnecessary.
-publish = "poetry publish --repository tr"
+#publish = "poetry publish --repository tr"
 release = ["generate-docs", "build-wheel", "publish"]
 
 [tool.poe.tasks.clean]
