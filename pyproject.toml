@@ -61,7 +61,7 @@ target-version = ['py38']  # TODO
 [tool.poe.tasks]
 precommit-checks = "pre-commit run --all-files"
 test = ["precommit-checks", "pytest"]
-pytest = "pytest --cache-clear --junitxml=htmlcov/pytest_junit.xml --html=htmlcov/pytest.html --self-contained-html --cov-report=html:htmlcov/coverage_html --cov-report=xml:htmlcov/coverage.xml"
+pytest = "pytest -s -c pytest-config.ini --cache-clear --junitxml=htmlcov/pytest_junit.xml --html=htmlcov/pytest.html --self-contained-html --cov-report=html:htmlcov/coverage_html --cov-report=xml:htmlcov/coverage.xml"
 build-docs = "pdoc --html src/misc -o docs/ --force"
 host-local-docs = "pdoc src/misc --http localhost:7999"
 build-wheel = "poetry build --format wheel"  # sdist is outdated and typically unnecessary.
