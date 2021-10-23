@@ -6,14 +6,14 @@ class BinarySearch:
     """Binary Search Implementation."""
 
     @staticmethod
-    def recur_search(items: List[Any], low: int, high: int, x: Any):
+    def recur_search(items: List[Any], target: Any, low: int, high: int):
         """Search for an item in a sorted array.
 
         Args:
             items: list of items
+            target: target item
             low: starting index
             high: ending index
-            x: target item
 
         Returns
             index of the target item
@@ -22,12 +22,12 @@ class BinarySearch:
             return -1
 
         mid = low + (high - low) // 2
-        if items[mid] == x:
+        if items[mid] == target:
             return mid
-        elif x < items[mid]:
-            return BinarySearch.recur_search(items, low, mid - 1, x)
+        elif target < items[mid]:
+            return BinarySearch.recur_search(items, low, mid - 1, target)
         else:
-            return BinarySearch.recur_search(items, mid + 1, high, x)
+            return BinarySearch.recur_search(items, mid + 1, high, target)
 
     @staticmethod
     def iterative_search(items: List[Any], x: Any):

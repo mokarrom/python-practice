@@ -15,7 +15,7 @@ readme = "README.md"
 homepage = "https://thehub.thomsonreuters.com/groups/misc"
 repository = "https://github.com/mokarrom/python-practice"
 documentation = "python-practice/docs"
-keywords = ["labs"]
+keywords = ["mokarrom"]
 # Add relevant classifiers from https://pypi.org/classifiers/
 # poetry adds "Programming Language :: Python :: 3", etc. by default, so those can be skipped.
 classifiers = [
@@ -45,13 +45,10 @@ pre-commit = "^2.4.0"
 pdoc3 = "^0.8.4"
 importlib-metadata = {version = "3.7.0", markers = "python_version < \"3.8\""}
 
-[[tool.poetry.source]]
-# https://python-poetry.org/docs/repositories/
-# https://thehub.thomsonreuters.com/docs/DOC-2517222#jive_content_id_Using_pip
-# NOTE: poetry search doesn't work with private repos but you can use pip search, then poetry add|install
-name = "tr"
-url = "https://pypi.org/"
-default = true
+# [[tool.poetry.source]]
+# name = "private_repo_name"
+# url = "https://pypi.org/"
+# default = true
 
 [tool.black]
 # See other configurations available at https://pypi.org/project/black/
