@@ -34,14 +34,14 @@ class TestBinarySearch:
 
     def test_recur_search(self, get_items):
         if type(get_items[0]) == int:
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 102) == 8
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), -1) == 0
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 114) == 9
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 120) == -1
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 7) == -1
+            assert BinarySearch.recur_search(get_items, 102, 0, (len(get_items) - 1)) == 8
+            assert BinarySearch.recur_search(get_items, -1, 0, (len(get_items) - 1)) == 0
+            assert BinarySearch.recur_search(get_items, 114, 0, (len(get_items) - 1)) == 9
+            assert BinarySearch.recur_search(get_items, 120, 0, (len(get_items) - 1)) == -1
+            assert BinarySearch.recur_search(get_items, 7, 0, (len(get_items) - 1) == -1
         else:
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Tom") == -1
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Joye") == 1
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Ross") == 5
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Chandler") == 0
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Monica") == 2
+            assert BinarySearch.recur_search(get_items, "Tom", 0, len(get_items) - 1) == -1
+            assert BinarySearch.recur_search(get_items, "Joye", 0, len(get_items) - 1) == 1
+            assert BinarySearch.recur_search(get_items, "Ross", 0, len(get_items) - 1) == 5
+            assert BinarySearch.recur_search(get_items, "Chandler", 0, len(get_items) - 1) == 0
+            assert BinarySearch.recur_search(get_items, "Monica", 0, len(get_items) - 1) == 2
