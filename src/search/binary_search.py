@@ -25,9 +25,9 @@ class BinarySearch:
         if items[mid] == target:
             return mid
         elif target < items[mid]:
-            return BinarySearch.recur_search(items, low, mid - 1, target)
+            return BinarySearch.recur_search(items, target, low, mid - 1)
         else:
-            return BinarySearch.recur_search(items, mid + 1, high, target)
+            return BinarySearch.recur_search(items, target, mid + 1, high)
 
     @staticmethod
     def iterative_search(items: List[Any], x: Any):

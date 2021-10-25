@@ -38,10 +38,11 @@ class TestBinarySearch:
             assert BinarySearch.recur_search(get_items, -1, 0, (len(get_items) - 1)) == 0
             assert BinarySearch.recur_search(get_items, 114, 0, (len(get_items) - 1)) == 9
             assert BinarySearch.recur_search(get_items, 120, 0, (len(get_items) - 1)) == -1
-            assert BinarySearch.recur_search(get_items, 7, 0, (len(get_items) - 1) == -1
+            assert BinarySearch.recur_search(get_items, 7, 0, (len(get_items) - 1)) == -1
         else:
             assert BinarySearch.recur_search(get_items, "Tom", 0, len(get_items) - 1) == -1
             assert BinarySearch.recur_search(get_items, "Joye", 0, len(get_items) - 1) == 1
             assert BinarySearch.recur_search(get_items, "Ross", 0, len(get_items) - 1) == 5
             assert BinarySearch.recur_search(get_items, "Chandler", 0, len(get_items) - 1) == 0
             assert BinarySearch.recur_search(get_items, "Monica", 0, len(get_items) - 1) == 2
+            assert BinarySearch.recur_search(get_items, "John", 0, len(get_items) - 1) == -1
