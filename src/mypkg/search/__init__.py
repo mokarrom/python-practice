@@ -1,1 +1,1 @@
-"""Search module."""
+"""Searching algorithms."""

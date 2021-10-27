@@ -15,6 +15,7 @@ docstring-convention = google
 ignore =
     E203
     W503
+    D107
 
 doctests = True
 filename = *.py
