@@ -3,11 +3,11 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.poetry]
-name = "misc"
+name = "mypkg"
 version = "0.1.0"
 description = "Python Practice Code"
 packages = [
-    { include = "misc", from = "src/" },
+    { include = "mypkg", from = "src/" },
 ]
 authors = ["Mokarrom Hossain <mokarrom.hossain@tr.com>"]
 license = "Proprietary"

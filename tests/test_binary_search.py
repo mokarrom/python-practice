@@ -1,6 +1,6 @@
 from typing import List, Union
 from pytest import fixture
-from search.binary_search import BinarySearch
+from mypkg.search.binary_search import BinarySearch
 
 
 class TestBinarySearch:
