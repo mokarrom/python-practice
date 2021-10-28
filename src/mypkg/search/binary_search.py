@@ -30,12 +30,12 @@ class BinarySearch:
             return BinarySearch.recur_search(items, target, mid + 1, high)
 
     @staticmethod
-    def iterative_search(items: List[Any], x: Any):
+    def iterative_search(items: List[Any], target: Any):
         """Search for an item in a sorted array.
 
         Args:
             items: list of items
-            x: target item
+            target: target item
 
         Returns:
             index of the target item
@@ -46,11 +46,65 @@ class BinarySearch:
         while low <= high:
             mid = low + (high - low) // 2
 
-            if x < items[mid]:
+            if target < items[mid]:
                 high = mid - 1
-            elif x > items[mid]:
+            elif target > items[mid]:
                 low = mid + 1
             else:
                 return mid
 
         return -1
+
+    @staticmethod
+    def rotated_sorted_array_search(nums: List[int], target: int) -> int:
+        """Search in Rotated Sorted Array. Ref: https://leetcode.com/problems/search-in-rotated-sorted-array/.
+
+        Args:
+            nums: possibly rotated sorted array of distinct integers
+            target: target item
+
+        Returns:
+            index of the target if it is in nums, or -1 if it is not in nums.
+        """
+        low, high = 0, len(nums) - 1
+        while low < high:
+            mid = (low + high) // 2
+            if target == nums[mid]:
+                return mid
+
+            if nums[low] <= nums[mid]:
+                if nums[low] <= target < nums[mid]:
+                    high = mid - 1
+                else:
+                    low = mid + 1
+            else:
+                if nums[mid] < target <= nums[high]:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+
+        return low if target == nums[low] else -1
+
+    @staticmethod
+    def find_min_rotated_sorted_array(nums: List[int]) -> int:
+        """Find Minimum in Rotated Sorted Array. Ref: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/.
+
+        Args:
+            nums: sorted rotated array of unique elements
+
+        Returns:
+            the minimum element of this array.
+        """
+        return BinarySearch._find_min(nums, 0, len(nums) - 1)
+
+    @staticmethod
+    def _find_min(nums: List[int], low: int, high: int) -> int:
+        if low >= high:
+            return nums[low]
+
+        mid = (low + high) // 2
+
+        if nums[mid] > nums[high]:
+            return BinarySearch._find_min(nums, mid + 1, high)
+        else:
+            return BinarySearch._find_min(nums, low, mid)

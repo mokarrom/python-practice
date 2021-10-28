@@ -46,3 +46,28 @@ class TestBinarySearch:
             assert BinarySearch.recur_search(get_items, "Chandler", 0, len(get_items) - 1) == 0
             assert BinarySearch.recur_search(get_items, "Monica", 0, len(get_items) - 1) == 2
             assert BinarySearch.recur_search(get_items, "John", 0, len(get_items) - 1) == -1
+
+    def test_rotated_sorted_array_search(self):
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 6, 7, 0, 1, 2], 0) == 4
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 6, 7, 0, 1, 2], 3) == -1
+        assert BinarySearch.rotated_sorted_array_search([1], 0) == -1
+
+        assert BinarySearch.rotated_sorted_array_search([1, 2, 3, 4, 5], 2) == 1
+        assert BinarySearch.rotated_sorted_array_search([5, 1, 2, 3, 4], 2) == 2
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 1, 2, 3], 2) == 3
+        assert BinarySearch.rotated_sorted_array_search([3, 4, 5, 1, 2], 2) == 4
+        assert BinarySearch.rotated_sorted_array_search([2, 3, 4, 5, 1], 2) == 0
+
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 2) == 0
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 1) == 1
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 3) == -1
+
+    def test_find_min_rotated_sorted_array(self):
+        assert BinarySearch.find_min_rotated_sorted_array([3, 4, 5, 1, 2]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([4, 5, 6, 7, 0, 1, 2]) == 0
+
+        assert BinarySearch.find_min_rotated_sorted_array([1, 2, 3, 4, 5]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([5, 1, 2, 3, 4]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([4, 5, 1, 2, 3]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([3, 4, 5, 1, 2]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([2, 3, 4, 5, 1]) == 1
