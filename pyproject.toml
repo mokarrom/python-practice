@@ -3,11 +3,11 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.poetry]
-name = "misc"
+name = "mypkg"
 version = "0.1.0"
 description = "Python Practice Code"
 packages = [
-    { include = "misc", from = "src/" },
+    { include = "mypkg", from = "src/" },
 ]
 authors = ["Mokarrom Hossain <mokarrom.hossain@tr.com>"]
 license = "Proprietary"
@@ -15,7 +15,7 @@ readme = "README.md"
 homepage = "https://thehub.thomsonreuters.com/groups/misc"
 repository = "https://github.com/mokarrom/python-practice"
 documentation = "python-practice/docs"
-keywords = ["labs"]
+keywords = ["mokarrom"]
 # Add relevant classifiers from https://pypi.org/classifiers/
 # poetry adds "Programming Language :: Python :: 3", etc. by default, so those can be skipped.
 classifiers = [
@@ -45,13 +45,10 @@ pre-commit = "^2.4.0"
 pdoc3 = "^0.8.4"
 importlib-metadata = {version = "3.7.0", markers = "python_version < \"3.8\""}
 
-[[tool.poetry.source]]
-# https://python-poetry.org/docs/repositories/
-# https://thehub.thomsonreuters.com/docs/DOC-2517222#jive_content_id_Using_pip
-# NOTE: poetry search doesn't work with private repos but you can use pip search, then poetry add|install
-name = "tr"
-url = "https://tr1.jfrog.io/artifactory/api/pypi/pypi/simple"
-default = false
+# [[tool.poetry.source]]
+# name = "private_repo_name"
+# url = "https://pypi.org/"
+# default = true
 
 [tool.black]
 # See other configurations available at https://pypi.org/project/black/
@@ -65,7 +62,7 @@ pytest = "pytest -s -c pytest-config.ini --cache-clear --junitxml=htmlcov/pytest
 build-docs = "pdoc --html src/misc -o docs/ --force"
 host-local-docs = "pdoc src/misc --http localhost:7999"
 build-wheel = "poetry build --format wheel"  # sdist is outdated and typically unnecessary.
-publish = "poetry publish --repository tr"
+#publish = "poetry publish --repository tr"
 release = ["generate-docs", "build-wheel", "publish"]
 
 [tool.poe.tasks.clean]

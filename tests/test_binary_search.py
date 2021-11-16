@@ -1,6 +1,6 @@
 from typing import List, Union
 from pytest import fixture
-from search.binary_search import BinarySearch
+from mypkg.search.binary_search import BinarySearch
 
 
 class TestBinarySearch:
@@ -34,14 +34,40 @@ class TestBinarySearch:
 
     def test_recur_search(self, get_items):
         if type(get_items[0]) == int:
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 102) == 8
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), -1) == 0
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 114) == 9
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 120) == -1
-            assert BinarySearch.recur_search(get_items, 0, (len(get_items) - 1), 7) == -1
+            assert BinarySearch.recur_search(get_items, 102, 0, (len(get_items) - 1)) == 8
+            assert BinarySearch.recur_search(get_items, -1, 0, (len(get_items) - 1)) == 0
+            assert BinarySearch.recur_search(get_items, 114, 0, (len(get_items) - 1)) == 9
+            assert BinarySearch.recur_search(get_items, 120, 0, (len(get_items) - 1)) == -1
+            assert BinarySearch.recur_search(get_items, 7, 0, (len(get_items) - 1)) == -1
         else:
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Tom") == -1
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Joye") == 1
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Ross") == 5
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Chandler") == 0
-            assert BinarySearch.recur_search(get_items, 0, len(get_items) - 1, "Monica") == 2
+            assert BinarySearch.recur_search(get_items, "Tom", 0, len(get_items) - 1) == -1
+            assert BinarySearch.recur_search(get_items, "Joye", 0, len(get_items) - 1) == 1
+            assert BinarySearch.recur_search(get_items, "Ross", 0, len(get_items) - 1) == 5
+            assert BinarySearch.recur_search(get_items, "Chandler", 0, len(get_items) - 1) == 0
+            assert BinarySearch.recur_search(get_items, "Monica", 0, len(get_items) - 1) == 2
+            assert BinarySearch.recur_search(get_items, "John", 0, len(get_items) - 1) == -1
+
+    def test_rotated_sorted_array_search(self):
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 6, 7, 0, 1, 2], 0) == 4
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 6, 7, 0, 1, 2], 3) == -1
+        assert BinarySearch.rotated_sorted_array_search([1], 0) == -1
+
+        assert BinarySearch.rotated_sorted_array_search([1, 2, 3, 4, 5], 2) == 1
+        assert BinarySearch.rotated_sorted_array_search([5, 1, 2, 3, 4], 2) == 2
+        assert BinarySearch.rotated_sorted_array_search([4, 5, 1, 2, 3], 2) == 3
+        assert BinarySearch.rotated_sorted_array_search([3, 4, 5, 1, 2], 2) == 4
+        assert BinarySearch.rotated_sorted_array_search([2, 3, 4, 5, 1], 2) == 0
+
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 2) == 0
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 1) == 1
+        assert BinarySearch.rotated_sorted_array_search([2, 1], 3) == -1
+
+    def test_find_min_rotated_sorted_array(self):
+        assert BinarySearch.find_min_rotated_sorted_array([3, 4, 5, 1, 2]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([4, 5, 6, 7, 0, 1, 2]) == 0
+
+        assert BinarySearch.find_min_rotated_sorted_array([1, 2, 3, 4, 5]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([5, 1, 2, 3, 4]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([4, 5, 1, 2, 3]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([3, 4, 5, 1, 2]) == 1
+        assert BinarySearch.find_min_rotated_sorted_array([2, 3, 4, 5, 1]) == 1
