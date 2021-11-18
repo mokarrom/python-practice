@@ -1,7 +1,9 @@
 from mypkg.misc.union_find import QuickFindUF, QuickUnionUF
 
+
 class Test:
     """Test class."""
+
     def test_uf(self):
         qf = QuickFindUF(10)
         self._quick_find(qf)
