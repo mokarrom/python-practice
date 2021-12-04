@@ -1,4 +1,4 @@
-from mypkg.misc.union_find import QuickFindUF, QuickUnionUF
+from mypkg.graph.union_find import QuickFindUF, QuickUnionUF
 
 
 class Test:
