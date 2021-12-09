@@ -1,16 +1,11 @@
-from pytest import fixture, mark
+from pytest import fixture
 from mypkg.recursion.pow import MyPow
 
 
 class TestMyPow:
     @fixture(scope="class")
     def test_cases(self):
-        tests = [
-            (2, 4, pow(2, 4)),
-            (2, -4, pow(2, -4)),
-            (2, 10, pow(2, 10)),
-            (2.1, 3, pow(2.1, 3))
-        ]
+        tests = [(2, 4, pow(2, 4)), (2, -4, pow(2, -4)), (2, 10, pow(2, 10)), (2.1, 3, pow(2.1, 3))]
         return tests
 
     def test_recursive_pow(self, test_cases):
