@@ -3,7 +3,12 @@ from typing import List
 
 
 class QuickFindUF:
-    """Find is faster but Union is too expensive."""
+    """Find is faster but Union is too expensive.
+
+    - Integer array/dictionary root[] of length N. Initialize all elements as their own root.
+    - Find: a point/edge (p, q) is connected iff they have the same root.
+    - Union: to merge components containing p and q,  change all entries whose root equals root[p] to root[q]
+    """
 
     def __init__(self, n: int):
         self.roots: List[int] = [i for i in range(n)]
@@ -27,12 +32,24 @@ class QuickFindUF:
 
 
 class QuickUnionUF:
-    """Union is faster but Find is too expensive."""
+    """Union is faster but Find is too expensive.
+
+    - Integer array/dictionary root[] of length N. Initialize all elements as their own root.
+    - roots[i] is the parent off i. Root of i is roots[roots[...roots[i]...]]
+    - Find: a point/edge (p, q) is connected iff they have the same root.
+    - Union: to merge components containing p and q, set p's root to the q's root.
+    """
 
     def __init__(self, n: int):
         self.roots: List[int] = [i for i in range(n)]
 
     def _root(self, node: int):
+        while node != self.roots[node]:
+            node = self.roots[node]
+
+        return node
+
+    def _root_optimized(self, node: int):
         while node != self.roots[node]:
             self.roots[node] = self.roots[self.roots[node]]  # optimization: path compression
             node = self.roots[node]
@@ -41,12 +58,12 @@ class QuickUnionUF:
 
     def connected(self, p: int, q: int) -> bool:
         """Are p and q in the same component?"""
-        return bool(self._root(p) == self._root(q))
+        return bool(self._root_optimized(p) == self._root_optimized(q))
 
     def union(self, p: int, q: int):
         """Add connection between p and q."""
-        p_root = self._root(p)
-        q_root = self._root(q)
+        p_root = self._root_optimized(p)
+        q_root = self._root_optimized(q)
         self.roots[p_root] = q_root
 
     def count(self) -> int:
