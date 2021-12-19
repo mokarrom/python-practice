@@ -1,5 +1,6 @@
 """LRU chache."""
 from typing import Dict, Optional
+from collections import OrderedDict
 
 
 class Node:
@@ -30,7 +31,7 @@ class LRUCache:
             self._head.prev = node
             self._head = node
 
-    def _delete(self, node: Node):
+    def _remove(self, node: Node):
         """Delete the given node."""
         prev_node = node.prev
         next_node = node.next
@@ -47,15 +48,19 @@ class LRUCache:
             prev_node.next = next_node
             next_node.prev = prev_node
 
+    def _mode_to_head(self, node: Node):
+        """Move the given node to the head of the list."""
+        self._remove(node)
+        node.prev = None
+        node.next = None
+        self._inset_first(node)
+
     def get(self, key: int) -> int:
         """Return the value of the key if the key exists, otherwise return -1."""
         value = -1
         if key in self._cache:
             cur_node = self._cache[key]
-            self._delete(cur_node)
-            cur_node.prev = None
-            cur_node.next = None
-            self._inset_first(cur_node)
+            self._mode_to_head(cur_node)
             value = cur_node.data
 
         return value
@@ -67,17 +72,44 @@ class LRUCache:
         """
         if key in self._cache:
             cur_node = self._cache[key]
-            self._delete(cur_node)
             cur_node.data = value
-            cur_node.prev = None
-            cur_node.next = None
-            self._inset_first(cur_node)
+            self._mode_to_head(cur_node)
         else:
             if len(self._cache) == self._capacity:
                 assert isinstance(self._tail, Node)
                 del self._cache[self._tail.key]
-                self._delete(self._tail)
+                self._remove(self._tail)
 
             new_node = Node(key, value)
             self._inset_first(new_node)
             self._cache[key] = new_node
+
+
+class LRUCache2:
+    """LRU cache using OrderedDict."""
+
+    def __init__(self, capacity: int):
+        self._size: int = capacity
+        self._cache: OrderedDict[int, int] = OrderedDict()
+
+    def get(self, key: int) -> int:
+        """Return the value of the key if the key exists, otherwise return -1."""
+        value = -1
+        if key in self._cache:
+            value = self._cache[key]
+            self._cache.move_to_end(key)
+
+        return value
+
+    def put(self, key: int, value: int) -> None:
+        """Update the value of the key if the key exists. Otherwise, add the key-value pair to the cache.
+
+        If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+        """
+        if key in self._cache:
+            del self._cache[key]
+
+        if len(self._cache) == self._size:
+            self._cache.popitem(last=False)
+
+        self._cache[key] = value

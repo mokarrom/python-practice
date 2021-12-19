@@ -1,5 +1,5 @@
 """LRU cache test."""
-from mypkg.linkedlist.lru_cache import LRUCache
+from mypkg.linkedlist.lru_cache import LRUCache, LRUCache2
 
 
 def test_lru_cache():
@@ -48,7 +48,7 @@ def test_lru_cache():
 
 
 def test_lru_cache_2():
-    cache = LRUCache(10)
+    cache = LRUCache2(10)
     cache.put(10, 13)
     cache.put(3, 17)
     cache.put(6, 11)
