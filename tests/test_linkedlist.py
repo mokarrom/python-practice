@@ -6,23 +6,28 @@ from mypkg.linkedlist.doubly_linkedlist import DLinkedList
 def test_singly_linkedlist():
     sg_list = SLinkedList()
 
+    assert sg_list.middle_node() is None
     assert not sg_list.contain(5)
     sg_list.insert_last(5)
     assert sg_list.contain(5)
     assert sg_list.get_nodes() == [5]
+    assert sg_list.middle_node().data == 5  # type: ignore
     sg_list.insert_first(3)
     assert sg_list.get_nodes() == [3, 5]
+    assert sg_list.middle_node().data == 5  # type: ignore
     sg_list.insert_last(7)
     sg_list.insert_first(1)
     assert sg_list.get_nodes() == [1, 3, 5, 7]
     sg_list.insert_at(2, 4)
     assert sg_list.get_nodes() == [1, 3, 4, 5, 7]
+    assert sg_list.middle_node().data == 4  # type: ignore
     sg_list.insert_at(0, 6)
     assert sg_list.get_nodes() == [6, 1, 3, 4, 5, 7]
     sg_list.insert_at(6, 8)
     assert sg_list.get_nodes() == [6, 1, 3, 4, 5, 7, 8]
     sg_list.insert_at(9, 9)
     assert sg_list.get_nodes() == [6, 1, 3, 4, 5, 7, 8, 9]
+    assert sg_list.middle_node().data == 5  # type: ignore
     assert sg_list.size() == len(sg_list.get_nodes())
 
     assert sg_list.contain(5)

@@ -1,5 +1,5 @@
 """Singly LinkedList."""
-from typing import Optional
+from typing import List, Optional
 
 
 class Node:
@@ -99,9 +99,9 @@ class SLinkedList:
         """Return the total number of nodes in this list."""
         return self._num_of_nodes
 
-    def get_nodes(self):
+    def get_nodes(self) -> List[int]:
         """Return all the nodes orderly."""
-        nodes = []
+        nodes: List[int] = []
         if self._head:
             cur_node = self._head
             nodes.append(cur_node.data)
@@ -110,3 +110,15 @@ class SLinkedList:
                 nodes.append(cur_node.data)
 
         return nodes
+
+    def middle_node(self) -> Optional[Node]:
+        """Return the middle node of the linked list."""
+        if self._head is None:
+            return None
+
+        slow = fast = self._head
+        while fast and fast.next:
+            slow = slow.next  # type: ignore
+            fast = fast.next.next  # type: ignore
+
+        return slow

@@ -3,23 +3,27 @@ from typing import List, Optional
 from mypkg.tree.tree_node import TreeNode
 
 
-class BinarySearchTree:
+class BST:
     """Binary Search Tree."""
 
-    def bst_from_sorted_array(self, nums: List[int]) -> Optional[TreeNode]:
+    @staticmethod
+    def bst_from_sorted_array(nums: List[int]) -> Optional[TreeNode]:
         """Construct a height-balanced binary search tree from a sorted array."""
+
+        def balanced_bst(low, high) -> Optional[TreeNode]:
+            if low > high:
+                return None
+            elif low == high:
+                return TreeNode(nums[low])
+
+            mid = (low + high) // 2
+            root = TreeNode(nums[mid])
+            root.left = balanced_bst(low, mid - 1)
+            root.right = balanced_bst(mid + 1, high)
+
+            return root
+
         if not nums:
             return None
-
-        return self._balanced_bst(nums, 0, len(nums) - 1)
-
-    def _balanced_bst(self, nums: List[int], beg: int, end: int) -> Optional[TreeNode]:
-        if end < beg:
-            return None
-
-        mid = beg + (end - beg) // 2
-        root = TreeNode(nums[mid])
-        root.left = self._balanced_bst(nums, beg, mid - 1)
-        root.right = self._balanced_bst(nums, mid + 1, end)
-
-        return root
+        else:
+            return balanced_bst(0, len(nums) - 1)
