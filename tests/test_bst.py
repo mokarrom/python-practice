@@ -37,6 +37,15 @@ def test_insert():
 
     assert bst.is_valid_bst1()
     assert bst.is_valid_bst2()
+    assert bst.find(14).data == 14
+    assert bst.find(6).data == 6
+    assert bst.find(1).data == 1
+
+    assert bst.find_inorder_successor(3).data == 4
+    assert bst.find_inorder_successor(1).data == 3
+    assert not bst.find_inorder_successor(14)
+    assert not bst.find_inorder_successor(12)
+    assert not bst.find_inorder_successor(2)
 
     bst.delete(3)
     assert bst.display() == [8, 4, 10, 1, 6, None, 14, None, None, None, 7, 13, None]

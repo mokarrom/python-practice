@@ -52,7 +52,7 @@ class BST:
                 root = root.left
             # Case-3: Node to be removed has both left and right child
             else:
-                right_min_node = self.find_minimum_node(root.right)
+                right_min_node = self._find_minimum_node(root.right)
                 root.data = right_min_node.data
                 root.right = self._find_and_delete(root.right, right_min_node.data)
 
@@ -69,6 +69,19 @@ class BST:
             return True
 
         return self._contains(root.left, value) if value < root.data else self._contains(root.right, value)
+
+    def find(self, value: int) -> TreeNode:
+        """Return the node from the BST that correspond to the given value."""
+        return self._find(self._root, value)
+
+    def _find(self, cur_node: TreeNode, value: int) -> Optional[TreeNode]:
+        """Time Complexity O(h)."""
+        if cur_node is None or value == cur_node.data:
+            return cur_node
+        elif value < cur_node.data:
+            return self._find(cur_node.left, value)
+        else:
+            return self._find(cur_node.right, value)
 
     def get_height(self) -> int:
         """Return the height of a binary tree.
@@ -108,12 +121,12 @@ class BST:
 
         return 1 + min(min_left, min_right)
 
-    def find_minimum_node(self, root: TreeNode) -> TreeNode:
+    def _find_minimum_node(self, root: TreeNode) -> TreeNode:
         """Return the minimum node, i.e., left most node of BST."""
         if root.left is None:
             return root
         else:
-            return self.find_minimum_node(root.left)
+            return self._find_minimum_node(root.left)
 
     def find_minimum_value(self) -> int:
         """Return the left most node's value. The node whose left is None is the node with minimum value."""
@@ -225,6 +238,30 @@ class BST:
             return True
 
         return _is_valid2(self._root, None)
+
+    def find_inorder_successor(self, value: int) -> Optional[TreeNode]:
+        """Return the in-order successor of a node associated with the given value in a BST."""
+        curr_node = self._find(self._root, value)
+        if curr_node is None:
+            return None
+
+        if curr_node.right:
+            # Case 1: Node has right subtree.
+            # Left most node, i.e., minimum node, in right subtree is the inorder successor of current node.
+            return self._find_minimum_node(curr_node.right)
+        else:
+            # Case 2: No right subtree.
+            # Go to the nearest ancestor for which given node would be in left subtree.
+            successor = None
+            ancestor = self._root
+            assert isinstance(ancestor, TreeNode)
+            while ancestor != curr_node:
+                if curr_node.data < ancestor.data:
+                    successor = ancestor  # so far this is the deepest node for which current node is in the left.
+                    ancestor = ancestor.left
+                else:
+                    ancestor = ancestor.right
+            return successor
 
     def display(self) -> List[int]:
         """Return a serialized format of a binary tree using level order traversal.
