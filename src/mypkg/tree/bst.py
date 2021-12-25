@@ -1,4 +1,5 @@
 """BST Algorithm."""
+from sys import maxsize
 from typing import List, Optional
 from mypkg.tree.tree_node import TreeNode
 
@@ -27,6 +28,35 @@ class BST:
                 cur_node.right = TreeNode(value)
             else:
                 self._insert_recur(cur_node.right, value)
+
+    def delete(self, value: int):
+        """Delete the node from BST corresponding to the given value."""
+        return self._find_and_delete(self._root, value)
+
+    def _find_and_delete(self, root: Optional[TreeNode], value: int):
+        if root is None:
+            return root
+
+        if value < root.data:
+            root.left = self._find_and_delete(root.left, value)
+        elif value > root.data:
+            root.right = self._find_and_delete(root.right, value)
+        else:  # Node to be deleted has found!
+            # Case-1: Node to be removed has no children.
+            if root.left is None and root.right is None:
+                root = None
+            # Case-2: Node to be removed has exactly one child
+            elif root.left is None:
+                root = root.right
+            elif root.right is None:
+                root = root.left
+            # Case-3: Node to be removed has both left and right child
+            else:
+                right_min_node = self.find_minimum_node(root.right)
+                root.data = right_min_node.data
+                root.right = self._find_and_delete(root.right, right_min_node.data)
+
+        return root
 
     def contains(self, value: int) -> bool:
         """Check whether the tree contains a specific node or not."""
@@ -77,6 +107,124 @@ class BST:
             return 1 + max(min_left, min_right)
 
         return 1 + min(min_left, min_right)
+
+    def find_minimum_node(self, root: TreeNode) -> TreeNode:
+        """Return the minimum node, i.e., left most node of BST."""
+        if root.left is None:
+            return root
+        else:
+            return self.find_minimum_node(root.left)
+
+    def find_minimum_value(self) -> int:
+        """Return the left most node's value. The node whose left is None is the node with minimum value."""
+        if self._root is None:
+            raise ValueError("Tree is empty!")
+
+        cur_node = self._root
+        while cur_node.left:
+            cur_node = cur_node.left
+        return cur_node.data  # type: ignore
+
+    def find_maximum_value(self) -> int:
+        """Return the right most node's value. The node whose right is None is the node with maximum value."""
+        if self._root is None:
+            raise ValueError("Tree is empty!")
+
+        cur_node = self._root
+        while cur_node.right:
+            cur_node = cur_node.right
+        return cur_node.data  # type: ignore
+
+    def level_order_traverse(self) -> List[int]:
+        """Traverse the nodes in BST, as Breadth first order, aka, level-order traversal."""
+        values = []
+        queue = [self._root] if self._root else []
+
+        while queue:
+            cur_node = queue.pop(0)
+            values.append(cur_node.data)
+            if cur_node.left:
+                queue.append(cur_node.left)
+            if cur_node.right:
+                queue.append(cur_node.right)
+
+        return values
+
+    def pre_order_traverse(self) -> List[int]:
+        """Traverse the nodes in BST, as Depth first pre-order, i.e., root -> left -> right."""
+        values = []
+
+        def _pre_order(root: TreeNode):
+            if not root:
+                return
+            values.append(root.data)
+            _pre_order(root.left)
+            _pre_order(root.right)
+
+        _pre_order(self._root)
+        return values
+
+    def in_order_traverse(self) -> List[int]:
+        """Traverse the nodes in BST, as Depth first in-order, i.e., left -> root -> right."""
+        return self._in_order(self._root)
+
+    def _in_order(self, root: TreeNode, values: List[int] = None) -> List[int]:
+        if values is None:
+            values = list()
+        if root is None:
+            return values
+
+        self._in_order(root.left, values)
+        values.append(root.data)
+        self._in_order(root.right, values)
+
+        return values
+
+    def post_order_traverse(self) -> List[int]:
+        """Traverse the nodes in BST, as Depth first post-order, i.e., left -> right -> root."""
+        return self._post_order(self._root, [])
+
+    def _post_order(self, root: TreeNode, values: List[int]) -> List[int]:
+        if root is None:
+            return values
+        self._post_order(root.left, values)
+        self._post_order(root.right, values)
+        values.append(root.data)
+
+        return values
+
+    def is_valid_bst1(self) -> bool:
+        """Return True if the given binary tree is a BST, otherwise False."""
+        return self._is_valid1(self._root, -maxsize, maxsize)
+
+    def _is_valid1(self, root: TreeNode, low: int, high: int) -> bool:
+        if root is None:
+            return True
+        if root.data < low or root.data > high:
+            return False
+
+        return self._is_valid1(root.left, low, root.data) and self._is_valid1(root.right, root.data, high)
+
+    def is_valid_bst2(self) -> bool:
+        """Check whether a binary tree is binary search tree or not.
+
+        Traverse the tree in-order fashion and check every node is greater than or equal to the previous node.
+        """
+
+        def _is_valid2(curr_node: Optional[TreeNode], prev_node: Optional[TreeNode]) -> bool:
+            if curr_node is None:
+                return True
+            if not _is_valid2(curr_node.left, prev_node):
+                return False
+            if prev_node and curr_node.data < prev_node.data:
+                return False
+            prev_node = curr_node
+            if not _is_valid2(curr_node.right, prev_node):
+                return False
+
+            return True
+
+        return _is_valid2(self._root, None)
 
     def display(self) -> List[int]:
         """Return a serialized format of a binary tree using level order traversal.
