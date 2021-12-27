@@ -239,6 +239,23 @@ class BST:
 
         return _is_valid2(self._root, None)
 
+    def is_complete(self):
+        """Check whether the binary tree is complete or not.
+
+        A binary tree is complete if its every node has zero or exactly two children.
+        """
+        if self._root is None:
+            return True
+        return self._complete(self._root)
+
+    def _complete(self, root: TreeNode) -> bool:
+        if root.left is None and root.right is None:
+            return True
+        elif root.left and root.right:
+            return self._complete(root.left) and self._complete(root.right)
+        else:
+            return False
+
     def find_inorder_successor(self, value: int) -> Optional[TreeNode]:
         """Return the in-order successor of a node associated with the given value in a BST."""
         curr_node = self._find(self._root, value)

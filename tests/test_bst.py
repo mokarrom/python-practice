@@ -37,6 +37,7 @@ def test_insert():
 
     assert bst.is_valid_bst1()
     assert bst.is_valid_bst2()
+    assert not bst.is_complete()
     assert bst.find(14).data == 14
     assert bst.find(6).data == 6
     assert bst.find(1).data == 1
