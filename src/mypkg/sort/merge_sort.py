@@ -7,6 +7,7 @@ class MergeSort:
 
     @staticmethod
     def sort(items: List[Any]) -> None:
+        """Sorting an unordered array using Merge sort."""
         if not items or len(items) < 2:
             return
         MergeSort._merge_sort(items, 0, len(items) - 1)
@@ -34,10 +35,9 @@ class MergeSort:
                 j += 1
 
         if i <= mid:
-            sorted_items.extend(items[i:mid + 1])
+            sorted_items.extend(items[i : mid + 1])
         if j <= high:
-            sorted_items.extend(items[j:high + 1])
+            sorted_items.extend(items[j : high + 1])
 
         # copy temp array to the original array
-        items[low:high + 1] = sorted_items
-
+        items[low : high + 1] = sorted_items
