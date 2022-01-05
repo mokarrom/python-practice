@@ -1,10 +1,11 @@
-"""A class that represent a node in tree."""
+"""A class that represent a node in binary tree."""
+from typing import Optional
 
 
 class TreeNode:
-    """Tree Node."""
+    """Binary Tree Node."""
 
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(self, val: int, left=None, right=None):
+        self.data: int = val
+        self.left: Optional[TreeNode] = left
+        self.right: Optional[TreeNode] = right

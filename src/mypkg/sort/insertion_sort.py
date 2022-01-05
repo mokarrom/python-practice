@@ -1,16 +1,18 @@
-"""Insertion module."""
+"""Insertion sort."""
 
 from typing import List, Any
 
 
 class InsertionSort:
-    """Binary Search Implementation."""
+    """Insertion sort Implementation."""
 
     @staticmethod
-    def sort(items: List[Any]) -> List[Any]:
-        """Sort the list."""
-        pass
-
-
-if __name__ == "__main__":
-    print("Hello")
+    def sort(items: List[Any]) -> None:
+        """Sort the list in-place."""
+        for i in range(1, len(items)):
+            j = i - 1
+            key = items[i]
+            while j >= 0 and items[j] > key:
+                items[j + 1] = items[j]
+                j -= 1
+            items[j + 1] = key
