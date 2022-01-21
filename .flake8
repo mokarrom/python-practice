@@ -25,3 +25,5 @@ per-file-ignores =
 	tests/*: D100, D101, D102, D103, D104
 	# ignore "imported by unused" in __init__.py files
 	__init__.py:F401
+	# ignore my test files
+    tests/leet_code.py, tests/my_code.py: F401, D100, D101, D102

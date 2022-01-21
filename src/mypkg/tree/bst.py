@@ -1,6 +1,7 @@
 """BST Algorithm."""
 from sys import maxsize
 from typing import List, Optional
+from collections import deque
 from mypkg.tree.tree_node import TreeNode
 
 
@@ -151,10 +152,10 @@ class BST:
     def level_order_traverse(self) -> List[int]:
         """Traverse the nodes in BST, as Breadth first order, aka, level-order traversal."""
         values = []
-        queue = [self._root] if self._root else []
+        queue = deque([self._root] if self._root else [])
 
         while queue:
-            cur_node = queue.pop(0)
+            cur_node = queue.popleft()
             values.append(cur_node.data)
             if cur_node.left:
                 queue.append(cur_node.left)
@@ -165,15 +166,14 @@ class BST:
 
     def pre_order_traverse(self) -> List[int]:
         """Traverse the nodes in BST, as Depth first pre-order, i.e., root -> left -> right."""
-        values = []
 
         def _pre_order(root: TreeNode):
-            if not root:
-                return
-            values.append(root.data)
-            _pre_order(root.left)
-            _pre_order(root.right)
+            if root:
+                values.append(root.data)
+                _pre_order(root.left)
+                _pre_order(root.right)
 
+        values: List[int] = []
         _pre_order(self._root)
         return values
 
@@ -195,16 +195,10 @@ class BST:
 
     def post_order_traverse(self) -> List[int]:
         """Traverse the nodes in BST, as Depth first post-order, i.e., left -> right -> root."""
-        return self._post_order(self._root, [])
+        return self._post_order(self._root)
 
-    def _post_order(self, root: TreeNode, values: List[int]) -> List[int]:
-        if root is None:
-            return values
-        self._post_order(root.left, values)
-        self._post_order(root.right, values)
-        values.append(root.data)
-
-        return values
+    def _post_order(self, root: TreeNode) -> List[int]:
+        return self._post_order(root.left) + self._post_order(root.right) + [root.data] if root else []
 
     def is_valid_bst1(self) -> bool:
         """Return True if the given binary tree is a BST, otherwise False."""

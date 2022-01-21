@@ -71,3 +71,26 @@ class TestBinarySearch:
         assert BinarySearch.find_min_rotated_sorted_array([4, 5, 1, 2, 3]) == 1
         assert BinarySearch.find_min_rotated_sorted_array([3, 4, 5, 1, 2]) == 1
         assert BinarySearch.find_min_rotated_sorted_array([2, 3, 4, 5, 1]) == 1
+
+    def test_find_index(self, get_items):
+        if type(get_items[0]) == int:
+            assert BinarySearch.find_index(get_items, 102) == 8
+            assert BinarySearch.find_index(get_items, -1) == 0
+            assert BinarySearch.find_index(get_items, 114, True) == 9
+            assert BinarySearch.find_index(get_items, 120, False) == -1
+            assert BinarySearch.find_index(get_items, 7) == -1
+        else:
+            assert BinarySearch.find_index(get_items, "Tom") == -1
+            assert BinarySearch.find_index(get_items, "Joye", True) == 1
+            assert BinarySearch.find_index(get_items, "Ross") == 5
+            assert BinarySearch.find_index(get_items, "Chandler", False) == 0
+            assert BinarySearch.find_index(get_items, "Monica", False) == 2
+
+        items = [2, 7, 7, 7, 8, 10]
+        assert BinarySearch.find_index(items, 6) == -1
+        assert BinarySearch.find_index(items, 8) == 4
+        assert BinarySearch.find_index(items, 7) == 1
+        assert BinarySearch.find_index(items, 7, first_occurrence=True) == 1
+        assert BinarySearch.find_index(items, 7, first_occurrence=False) == 3
+        assert BinarySearch.find_index(items, 10, first_occurrence=False) == 5
+        assert BinarySearch.find_index(items, 17, first_occurrence=False) == -1

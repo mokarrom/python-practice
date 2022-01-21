@@ -30,7 +30,7 @@ class BinarySearch:
             return BinarySearch.recur_search(items, target, mid + 1, high)
 
     @staticmethod
-    def iterative_search(items: List[Any], target: Any):
+    def iterative_search(items: List[Any], target: Any) -> int:
         """Search for an item in a sorted array.
 
         Args:
@@ -53,6 +53,31 @@ class BinarySearch:
             else:
                 return mid
 
+        return -1
+
+    @staticmethod
+    def find_index(items: List[Any], target: Any, first_occurrence: bool = True, low: int = 0, high=None) -> int:
+        """Returns the first or the last occurrence of a target in a sorted array."""
+        if high is None:
+            high = len(items) - 1
+
+        while low <= high:
+            mid: int = low + (high - low) // 2
+            if target < items[mid]:
+                high = mid - 1
+            elif target > items[mid]:
+                low = mid + 1
+            else:  # target == items[mid]
+                if first_occurrence:  # index of the first occurrence of target item
+                    if mid == low or items[mid - 1] < target:
+                        return mid
+                    else:
+                        high = mid - 1
+                else:  # index of the last occurrence of target item
+                    if mid == high or items[mid + 1] > target:
+                        return mid
+                    else:
+                        low = mid + 1
         return -1
 
     @staticmethod

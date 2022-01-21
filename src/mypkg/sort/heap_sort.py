@@ -39,7 +39,9 @@ class MaxHeap:
         """
         while has_left_child(size, parent_idx):
             max_child_idx = get_left_child_idx(parent_idx)
-            if has_right_child(size, parent_idx) and get_right_child(heap, parent_idx) > get_left_child(heap, parent_idx):
+            if has_right_child(size, parent_idx) and get_right_child(heap, parent_idx) > get_left_child(
+                heap, parent_idx
+            ):
                 max_child_idx = get_right_child_idx(parent_idx)
             if heap[parent_idx] >= heap[max_child_idx]:
                 break
@@ -128,5 +130,3 @@ def get_right_child(items: List[Any], parent_idx: int) -> Any:
 def swap(items: List[Any], idx1: int, idx2: int) -> None:
     """Swap elements in the given list."""
     items[idx1], items[idx2] = items[idx2], items[idx1]
-
-
