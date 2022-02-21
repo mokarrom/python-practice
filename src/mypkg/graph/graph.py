@@ -113,6 +113,36 @@ class Graph(object):
 
         return visited
 
+    def get_all_vertices(self) -> List[str]:
+        """Return all the vertices."""
+        vertices = set()
+        for vertex, neighbors in self._graph.items():
+            vertices.add(vertex)
+            vertices.union(neighbors)
+        return list(vertices)
+
+    def topological_sort(self) -> List[str]:
+        """Return the topological order of vertices.
+
+        For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
+        vertex u comes before v in the ordering.
+        """
+        seen: Set[str] = set()
+        stack: List[str] = list()
+
+        def _top_sort(vertex: str):
+            seen.add(vertex)
+            for neighbor in self._graph[vertex]:
+                if neighbor not in seen:
+                    _top_sort(neighbor)
+            stack.append(vertex)
+
+        for cur_vertex in self.get_all_vertices():
+            if cur_vertex not in seen:
+                _top_sort(cur_vertex)
+
+        return list(reversed(stack))
+
 
 if __name__ == "__main__":
     # A-- -- --B-- -- --C

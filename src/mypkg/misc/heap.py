@@ -109,3 +109,23 @@ class MinHeap:
     def display_heap(self) -> List[int]:
         """Return the heap nodes in a list."""
         return self._heap[: self._size]
+
+
+class MaxHeapObj(object):
+    """Max-heap implementation using heapq."""
+
+    def __init__(self, char: str, freq: int):
+        self.char = char
+        self.freq = freq
+
+    def __lt__(self, other):
+        """Override lt method."""
+        return self.char > other.char
+
+    def __eq__(self, other):
+        """Override eq method."""
+        return self.char == other.char
+
+    def __str__(self):
+        """Override str method."""
+        return str(self.char)

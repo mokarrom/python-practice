@@ -37,3 +37,19 @@ class TestGraph:
 
         nodes = self.graph.dfs_recursive("A")
         assert len(nodes) == 7
+
+
+def test_topological_sort():
+    """Testing topological sort."""
+    connections = [("A", "C"), ("B", "C"), ("B", "D"), ("C", "E"), ("D", "F"), ("E", "H"), ("E", "F"), ("F", "G")]
+    graph = Graph(connections, directed=True)
+    assert graph.topological_sort() == ["A", "B", "C", "E", "H", "D", "F", "G"] or [
+        "B",
+        "D",
+        "A",
+        "C",
+        "E",
+        "H",
+        "F",
+        "G",
+    ]

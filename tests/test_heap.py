@@ -1,4 +1,7 @@
+import heapq
+from collections import Counter
 from mypkg.misc.heap import MinHeap
+from mypkg.misc.heap import MaxHeapObj
 
 
 def test_min_heap():
@@ -63,3 +66,16 @@ def test_min_heap():
     assert my_heap._left_child(4) == 27
     assert my_heap._right_child(1) == 18
     assert not my_heap._has_right_child(4)
+
+
+def test_max_heap():
+    freq_count = Counter("caabababcd")
+    max_heap = [MaxHeapObj(char, freq) for char, freq in freq_count.items()]
+    heapq.heapify(max_heap)
+
+    sorted_chars = []
+    while max_heap:
+        heap_obj = heapq.heappop(max_heap)
+        sorted_chars.append((heap_obj.char, heap_obj.freq))
+
+    assert sorted_chars == [("d", 1), ("c", 2), ("b", 3), ("a", 4)]

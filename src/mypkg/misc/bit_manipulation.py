@@ -48,10 +48,3 @@ def generate_padded_binary(n: int) -> List[str]:
     num_of_bits = int(math.log2(n)) + 1
     nth_bits = 1 << num_of_bits
     return [bin(i | nth_bits)[3:] for i in range(n)]
-
-
-def generate_padded_binary(n: int) -> List[str]:
-    """Generate all binary numbers up to n with zero left padded."""
-    num_of_bits = int(math.log2(n)) + 1
-    nth_bits = 1 << num_of_bits
-    return [bin(i | nth_bits)[3:] for i in range(n)]
