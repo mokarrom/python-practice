@@ -41,30 +41,44 @@ class QuickUnionUF:
     """
 
     def __init__(self, n: int):
-        self.roots: List[int] = [i for i in range(n)]
+        self.parent: List[int] = [i for i in range(n)]
+        self.size = [1] * n
 
-    def _root(self, node: int):
-        while node != self.roots[node]:
-            node = self.roots[node]
+    def find(self, node: int):
+        """Returns the root of the given node."""
+        while node != self.parent[node]:
+            node = self.parent[node]
 
         return node
 
-    def _root_optimized(self, node: int):
-        while node != self.roots[node]:
-            self.roots[node] = self.roots[self.roots[node]]  # optimization: path compression
-            node = self.roots[node]
+    def find_optimized(self, node: int):
+        """Returns the root of the given node."""
+        while node != self.parent[node]:
+            self.parent[node] = self.parent[self.parent[node]]  # optimization: path compression
+            node = self.parent[node]
 
         return node
 
     def connected(self, p: int, q: int) -> bool:
         """Are p and q in the same component?"""
-        return bool(self._root_optimized(p) == self._root_optimized(q))
+        return bool(self.find_optimized(p) == self.find_optimized(q))
 
     def union(self, p: int, q: int):
         """Add connection between p and q."""
-        p_root = self._root_optimized(p)
-        q_root = self._root_optimized(q)
-        self.roots[p_root] = q_root
+        p_root = self.find_optimized(p)
+        q_root = self.find_optimized(q)
+
+        # We want to ensure the larger set remains the root.
+        if self.size[p_root] < self.size[q_root]:
+            # Make q_root the overall root.
+            self.parent[p_root] = q_root
+            # The size of the set rooted at q is the sum of the two.
+            self.size[q_root] += self.size[p_root]
+        else:
+            # Make p_root the overall root.
+            self.parent[q_root] = p_root
+            # The size of the set rooted at p is the sum of the two.
+            self.size[p_root] += self.size[q_root]
 
     def count(self) -> int:
         """Return the number of components."""
