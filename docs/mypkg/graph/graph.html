@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.5" />
+<title>mypkg.graph.graph API documentation</title>
+<meta name="description" content="Graph algorithms." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mypkg.graph.graph</code></h1>
+</header>
+<section id="section-intro">
+<p>Graph algorithms.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Graph algorithms.&#34;&#34;&#34;
+import pprint
+from collections import defaultdict
+from typing import List, Set, Tuple, Dict
+
+
+class Graph(object):
+    &#34;&#34;&#34;Graph data structure, undirected by default.&#34;&#34;&#34;
+
+    def __init__(self, connections: List[Tuple[str, str]], directed=False):
+        self._graph: Dict[str, Set[str]] = defaultdict(set)
+        self._directed = directed
+        self.add_connections(connections)
+        self._pretty_print = pprint.PrettyPrinter()
+
+    def add_connections(self, connections: List[Tuple[str, str]]):
+        &#34;&#34;&#34;Add connections (list of tuple pairs) to graph.&#34;&#34;&#34;
+        for node1, node2 in connections:
+            self.add(node1, node2)
+
+    def add(self, node1: str, node2: str):
+        &#34;&#34;&#34;Add a connection between node1 and node2.&#34;&#34;&#34;
+        self._graph[node1].add(node2)
+        if not self._directed:
+            self._graph[node2].add(node1)
+
+    def remove(self, node: str):
+        &#34;&#34;&#34;Remove all references to the given node.&#34;&#34;&#34;
+        for _, neighbors in self._graph.items():
+            if node in neighbors:
+                neighbors.remove(node)
+        if node in self._graph:
+            del self._graph[node]
+
+    def __str__(self):
+        &#34;&#34;&#34;Overriding Object&#39;s str().&#34;&#34;&#34;
+        return &#34;{}({})&#34;.format(self.__class__.__name__, dict(self._graph))
+
+    def display_graph(self):
+        &#34;&#34;&#34;Display graph&#39;s nodes and edges.&#34;&#34;&#34;
+        self._pretty_print.pprint(self._graph)
+
+    def is_connected(self, node1: str, node2: str) -&gt; bool:
+        &#34;&#34;&#34;Is node1 is connected to node2.&#34;&#34;&#34;
+        return node1 in self._graph and node2 in self._graph[node1]
+
+    def find_path(self, node1: str, node2: str) -&gt; List[str]:
+        &#34;&#34;&#34;Find any path between node1 and node2 (may not be shortest).&#34;&#34;&#34;
+        path: List[str] = list()
+        if node1 not in self._graph or node2 not in self._graph:
+            return path
+
+        path = path + [node1]
+
+        for node in self._graph[node1]:
+            if node not in path:
+                new_path = self.find_path(node, node2)
+                if new_path:
+                    path.extend(new_path)
+        return path
+
+    def bfs(self, start_node: str) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Breadth-first traversal.&#34;&#34;&#34;
+        visited: List[str] = list()
+        seen: Set[str] = set()
+        queue: List[str] = list()
+
+        if start_node not in self._graph:
+            return visited
+
+        seen.add(start_node)
+        queue.append(start_node)
+
+        while queue:
+            cur_node = queue.pop(0)
+            visited.append(cur_node)
+            for neighbor in self._graph[cur_node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    queue.append(neighbor)
+
+        return visited
+
+    def dfs_iterative(self, start_node: str) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+        visited: List[str] = list()
+        seen: Set[str] = set()
+        stack: List[str] = list()
+
+        if start_node not in self._graph:
+            return visited
+
+        seen.add(start_node)
+        stack.append(start_node)
+        while stack:
+            cur_node = stack.pop()
+            visited.append(cur_node)
+            for neighbor in self._graph[cur_node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    stack.append(neighbor)
+
+        return visited
+
+    def dfs_recursive(self, start_node: str, visited: List[str] = None) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+        if visited is None:
+            visited = list()
+        visited.append(start_node)
+        for neighbor in self._graph[start_node]:
+            if neighbor not in visited:
+                self.dfs_recursive(neighbor, visited)
+
+        return visited
+
+    def get_all_vertices(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return all the vertices.&#34;&#34;&#34;
+        vertices = set()
+        for vertex, neighbors in self._graph.items():
+            vertices.add(vertex)
+            vertices.union(neighbors)
+        return list(vertices)
+
+    def topological_sort(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return the topological order of vertices.
+
+        For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
+        vertex u comes before v in the ordering.
+        &#34;&#34;&#34;
+        seen: Set[str] = set()
+        stack: List[str] = list()
+
+        def _top_sort(vertex: str):
+            seen.add(vertex)
+            for neighbor in self._graph[vertex]:
+                if neighbor not in seen:
+                    _top_sort(neighbor)
+            stack.append(vertex)
+
+        for cur_vertex in self.get_all_vertices():
+            if cur_vertex not in seen:
+                _top_sort(cur_vertex)
+
+        return list(reversed(stack))
+
+
+if __name__ == &#34;__main__&#34;:
+    # A-- -- --B-- -- --C
+    # | \      |     /  |   \
+    # |   \    |   /    |     G
+    # |     \  | /      |   /
+    # D-- -- --E-- -- --F
+
+    connections = [
+        (&#34;A&#34;, &#34;B&#34;),
+        (&#34;A&#34;, &#34;D&#34;),
+        (&#34;A&#34;, &#34;E&#34;),
+        (&#34;B&#34;, &#34;C&#34;),
+        (&#34;B&#34;, &#34;E&#34;),
+        (&#34;C&#34;, &#34;E&#34;),
+        (&#34;C&#34;, &#34;F&#34;),
+        (&#34;C&#34;, &#34;G&#34;),
+        (&#34;D&#34;, &#34;E&#34;),
+        (&#34;E&#34;, &#34;F&#34;),
+        (&#34;F&#34;, &#34;G&#34;),
+    ]
+    g = Graph(connections)
+
+    g.display_graph()
+
+    print(g.bfs(&#34;A&#34;))
+    print(g.dfs_iterative(&#34;A&#34;))
+    print(g.dfs_recursive(&#34;A&#34;))
+
+    # g.display_graph()
+    # g.add(&#39;E&#39;, &#39;D&#39;)
+    # g.display_graph()
+    # g.remove(&#39;A&#39;)
+    # g.display_graph()
+    # g.add(&#39;G&#39;, &#39;B&#39;)
+    # g.display_graph()
+    # p = g.find_path(&#39;G&#39;, &#39;E&#39;)
+    # print(p)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="mypkg.graph.graph.Graph"><code class="flex name class">
+<span>class <span class="ident">Graph</span></span>
+<span>(</span><span>connections: List[Tuple[str, str]], directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Graph data structure, undirected by default.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Graph(object):
+    &#34;&#34;&#34;Graph data structure, undirected by default.&#34;&#34;&#34;
+
+    def __init__(self, connections: List[Tuple[str, str]], directed=False):
+        self._graph: Dict[str, Set[str]] = defaultdict(set)
+        self._directed = directed
+        self.add_connections(connections)
+        self._pretty_print = pprint.PrettyPrinter()
+
+    def add_connections(self, connections: List[Tuple[str, str]]):
+        &#34;&#34;&#34;Add connections (list of tuple pairs) to graph.&#34;&#34;&#34;
+        for node1, node2 in connections:
+            self.add(node1, node2)
+
+    def add(self, node1: str, node2: str):
+        &#34;&#34;&#34;Add a connection between node1 and node2.&#34;&#34;&#34;
+        self._graph[node1].add(node2)
+        if not self._directed:
+            self._graph[node2].add(node1)
+
+    def remove(self, node: str):
+        &#34;&#34;&#34;Remove all references to the given node.&#34;&#34;&#34;
+        for _, neighbors in self._graph.items():
+            if node in neighbors:
+                neighbors.remove(node)
+        if node in self._graph:
+            del self._graph[node]
+
+    def __str__(self):
+        &#34;&#34;&#34;Overriding Object&#39;s str().&#34;&#34;&#34;
+        return &#34;{}({})&#34;.format(self.__class__.__name__, dict(self._graph))
+
+    def display_graph(self):
+        &#34;&#34;&#34;Display graph&#39;s nodes and edges.&#34;&#34;&#34;
+        self._pretty_print.pprint(self._graph)
+
+    def is_connected(self, node1: str, node2: str) -&gt; bool:
+        &#34;&#34;&#34;Is node1 is connected to node2.&#34;&#34;&#34;
+        return node1 in self._graph and node2 in self._graph[node1]
+
+    def find_path(self, node1: str, node2: str) -&gt; List[str]:
+        &#34;&#34;&#34;Find any path between node1 and node2 (may not be shortest).&#34;&#34;&#34;
+        path: List[str] = list()
+        if node1 not in self._graph or node2 not in self._graph:
+            return path
+
+        path = path + [node1]
+
+        for node in self._graph[node1]:
+            if node not in path:
+                new_path = self.find_path(node, node2)
+                if new_path:
+                    path.extend(new_path)
+        return path
+
+    def bfs(self, start_node: str) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Breadth-first traversal.&#34;&#34;&#34;
+        visited: List[str] = list()
+        seen: Set[str] = set()
+        queue: List[str] = list()
+
+        if start_node not in self._graph:
+            return visited
+
+        seen.add(start_node)
+        queue.append(start_node)
+
+        while queue:
+            cur_node = queue.pop(0)
+            visited.append(cur_node)
+            for neighbor in self._graph[cur_node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    queue.append(neighbor)
+
+        return visited
+
+    def dfs_iterative(self, start_node: str) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+        visited: List[str] = list()
+        seen: Set[str] = set()
+        stack: List[str] = list()
+
+        if start_node not in self._graph:
+            return visited
+
+        seen.add(start_node)
+        stack.append(start_node)
+        while stack:
+            cur_node = stack.pop()
+            visited.append(cur_node)
+            for neighbor in self._graph[cur_node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    stack.append(neighbor)
+
+        return visited
+
+    def dfs_recursive(self, start_node: str, visited: List[str] = None) -&gt; List[str]:
+        &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+        if visited is None:
+            visited = list()
+        visited.append(start_node)
+        for neighbor in self._graph[start_node]:
+            if neighbor not in visited:
+                self.dfs_recursive(neighbor, visited)
+
+        return visited
+
+    def get_all_vertices(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return all the vertices.&#34;&#34;&#34;
+        vertices = set()
+        for vertex, neighbors in self._graph.items():
+            vertices.add(vertex)
+            vertices.union(neighbors)
+        return list(vertices)
+
+    def topological_sort(self) -&gt; List[str]:
+        &#34;&#34;&#34;Return the topological order of vertices.
+
+        For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
+        vertex u comes before v in the ordering.
+        &#34;&#34;&#34;
+        seen: Set[str] = set()
+        stack: List[str] = list()
+
+        def _top_sort(vertex: str):
+            seen.add(vertex)
+            for neighbor in self._graph[vertex]:
+                if neighbor not in seen:
+                    _top_sort(neighbor)
+            stack.append(vertex)
+
+        for cur_vertex in self.get_all_vertices():
+            if cur_vertex not in seen:
+                _top_sort(cur_vertex)
+
+        return list(reversed(stack))</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="mypkg.graph.graph.Graph.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self, node1: str, node2: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a connection between node1 and node2.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add(self, node1: str, node2: str):
+    &#34;&#34;&#34;Add a connection between node1 and node2.&#34;&#34;&#34;
+    self._graph[node1].add(node2)
+    if not self._directed:
+        self._graph[node2].add(node1)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.add_connections"><code class="name flex">
+<span>def <span class="ident">add_connections</span></span>(<span>self, connections: List[Tuple[str, str]])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add connections (list of tuple pairs) to graph.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_connections(self, connections: List[Tuple[str, str]]):
+    &#34;&#34;&#34;Add connections (list of tuple pairs) to graph.&#34;&#34;&#34;
+    for node1, node2 in connections:
+        self.add(node1, node2)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.bfs"><code class="name flex">
+<span>def <span class="ident">bfs</span></span>(<span>self, start_node: str) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the Breadth-first traversal.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bfs(self, start_node: str) -&gt; List[str]:
+    &#34;&#34;&#34;Return the Breadth-first traversal.&#34;&#34;&#34;
+    visited: List[str] = list()
+    seen: Set[str] = set()
+    queue: List[str] = list()
+
+    if start_node not in self._graph:
+        return visited
+
+    seen.add(start_node)
+    queue.append(start_node)
+
+    while queue:
+        cur_node = queue.pop(0)
+        visited.append(cur_node)
+        for neighbor in self._graph[cur_node]:
+            if neighbor not in seen:
+                seen.add(neighbor)
+                queue.append(neighbor)
+
+    return visited</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.dfs_iterative"><code class="name flex">
+<span>def <span class="ident">dfs_iterative</span></span>(<span>self, start_node: str) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the Depth-first traversal.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dfs_iterative(self, start_node: str) -&gt; List[str]:
+    &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+    visited: List[str] = list()
+    seen: Set[str] = set()
+    stack: List[str] = list()
+
+    if start_node not in self._graph:
+        return visited
+
+    seen.add(start_node)
+    stack.append(start_node)
+    while stack:
+        cur_node = stack.pop()
+        visited.append(cur_node)
+        for neighbor in self._graph[cur_node]:
+            if neighbor not in seen:
+                seen.add(neighbor)
+                stack.append(neighbor)
+
+    return visited</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.dfs_recursive"><code class="name flex">
+<span>def <span class="ident">dfs_recursive</span></span>(<span>self, start_node: str, visited: List[str] = None) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the Depth-first traversal.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dfs_recursive(self, start_node: str, visited: List[str] = None) -&gt; List[str]:
+    &#34;&#34;&#34;Return the Depth-first traversal.&#34;&#34;&#34;
+    if visited is None:
+        visited = list()
+    visited.append(start_node)
+    for neighbor in self._graph[start_node]:
+        if neighbor not in visited:
+            self.dfs_recursive(neighbor, visited)
+
+    return visited</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.display_graph"><code class="name flex">
+<span>def <span class="ident">display_graph</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Display graph's nodes and edges.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_graph(self):
+    &#34;&#34;&#34;Display graph&#39;s nodes and edges.&#34;&#34;&#34;
+    self._pretty_print.pprint(self._graph)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.find_path"><code class="name flex">
+<span>def <span class="ident">find_path</span></span>(<span>self, node1: str, node2: str) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Find any path between node1 and node2 (may not be shortest).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_path(self, node1: str, node2: str) -&gt; List[str]:
+    &#34;&#34;&#34;Find any path between node1 and node2 (may not be shortest).&#34;&#34;&#34;
+    path: List[str] = list()
+    if node1 not in self._graph or node2 not in self._graph:
+        return path
+
+    path = path + [node1]
+
+    for node in self._graph[node1]:
+        if node not in path:
+            new_path = self.find_path(node, node2)
+            if new_path:
+                path.extend(new_path)
+    return path</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.get_all_vertices"><code class="name flex">
+<span>def <span class="ident">get_all_vertices</span></span>(<span>self) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return all the vertices.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_vertices(self) -&gt; List[str]:
+    &#34;&#34;&#34;Return all the vertices.&#34;&#34;&#34;
+    vertices = set()
+    for vertex, neighbors in self._graph.items():
+        vertices.add(vertex)
+        vertices.union(neighbors)
+    return list(vertices)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.is_connected"><code class="name flex">
+<span>def <span class="ident">is_connected</span></span>(<span>self, node1: str, node2: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Is node1 is connected to node2.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_connected(self, node1: str, node2: str) -&gt; bool:
+    &#34;&#34;&#34;Is node1 is connected to node2.&#34;&#34;&#34;
+    return node1 in self._graph and node2 in self._graph[node1]</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.remove"><code class="name flex">
+<span>def <span class="ident">remove</span></span>(<span>self, node: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove all references to the given node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove(self, node: str):
+    &#34;&#34;&#34;Remove all references to the given node.&#34;&#34;&#34;
+    for _, neighbors in self._graph.items():
+        if node in neighbors:
+            neighbors.remove(node)
+    if node in self._graph:
+        del self._graph[node]</code></pre>
+</details>
+</dd>
+<dt id="mypkg.graph.graph.Graph.topological_sort"><code class="name flex">
+<span>def <span class="ident">topological_sort</span></span>(<span>self) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the topological order of vertices.</p>
+<p>For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
+vertex u comes before v in the ordering.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def topological_sort(self) -&gt; List[str]:
+    &#34;&#34;&#34;Return the topological order of vertices.
+
+    For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
+    vertex u comes before v in the ordering.
+    &#34;&#34;&#34;
+    seen: Set[str] = set()
+    stack: List[str] = list()
+
+    def _top_sort(vertex: str):
+        seen.add(vertex)
+        for neighbor in self._graph[vertex]:
+            if neighbor not in seen:
+                _top_sort(neighbor)
+        stack.append(vertex)
+
+    for cur_vertex in self.get_all_vertices():
+        if cur_vertex not in seen:
+            _top_sort(cur_vertex)
+
+    return list(reversed(stack))</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mypkg.graph" href="index.html">mypkg.graph</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="mypkg.graph.graph.Graph" href="#mypkg.graph.graph.Graph">Graph</a></code></h4>
+<ul class="two-column">
+<li><code><a title="mypkg.graph.graph.Graph.add" href="#mypkg.graph.graph.Graph.add">add</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.add_connections" href="#mypkg.graph.graph.Graph.add_connections">add_connections</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.bfs" href="#mypkg.graph.graph.Graph.bfs">bfs</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.dfs_iterative" href="#mypkg.graph.graph.Graph.dfs_iterative">dfs_iterative</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.dfs_recursive" href="#mypkg.graph.graph.Graph.dfs_recursive">dfs_recursive</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.display_graph" href="#mypkg.graph.graph.Graph.display_graph">display_graph</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.find_path" href="#mypkg.graph.graph.Graph.find_path">find_path</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.get_all_vertices" href="#mypkg.graph.graph.Graph.get_all_vertices">get_all_vertices</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.is_connected" href="#mypkg.graph.graph.Graph.is_connected">is_connected</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.remove" href="#mypkg.graph.graph.Graph.remove">remove</a></code></li>
+<li><code><a title="mypkg.graph.graph.Graph.topological_sort" href="#mypkg.graph.graph.Graph.topological_sort">topological_sort</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.5</a>.</p>
+</footer>
+</body>
+</html>

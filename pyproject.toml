@@ -59,8 +59,8 @@ target-version = ['py38']  # TODO
 precommit-checks = "pre-commit run --all-files"
 test = ["precommit-checks", "pytest"]
 pytest = "pytest -s -c pytest-config.ini --cache-clear --junitxml=htmlcov/pytest_junit.xml --html=htmlcov/pytest.html --self-contained-html --cov-report=html:htmlcov/coverage_html --cov-report=xml:htmlcov/coverage.xml"
-build-docs = "pdoc --html src/misc -o docs/ --force"
-host-local-docs = "pdoc src/misc --http localhost:7999"
+build-docs = "pdoc --html src/mypkg -o docs/ --force"
+host-local-docs = "pdoc src/mypkg --http localhost:7999"
 build-wheel = "poetry build --format wheel"  # sdist is outdated and typically unnecessary.
 #publish = "poetry publish --repository tr"
 release = ["generate-docs", "build-wheel", "publish"]

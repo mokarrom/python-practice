@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.5" />
+<title>mypkg.tree.bst API documentation</title>
+<meta name="description" content="BST Algorithm." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mypkg.tree.bst</code></h1>
+</header>
+<section id="section-intro">
+<p>BST Algorithm.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;BST Algorithm.&#34;&#34;&#34;
+from sys import maxsize
+from typing import List, Optional
+from collections import deque
+from mypkg.tree.tree_node import TreeNode
+
+
+class BST:
+    &#34;&#34;&#34;Binary Search Tree.&#34;&#34;&#34;
+
+    def __init__(self):
+        self._root: Optional[TreeNode] = None
+
+    def insert(self, value: int):
+        &#34;&#34;&#34;Insert a value into the BST.&#34;&#34;&#34;
+        if self._root is None:
+            self._root = TreeNode(value)
+        else:
+            self._insert_recur(self._root, value)
+
+    def _insert_recur(self, cur_node: TreeNode, value: int):
+        if value &lt; cur_node.data:
+            if cur_node.left is None:
+                cur_node.left = TreeNode(value)
+            else:
+                self._insert_recur(cur_node.left, value)
+        else:
+            if cur_node.right is None:
+                cur_node.right = TreeNode(value)
+            else:
+                self._insert_recur(cur_node.right, value)
+
+    def delete(self, value: int):
+        &#34;&#34;&#34;Delete the node from BST corresponding to the given value.&#34;&#34;&#34;
+        return self._find_and_delete(self._root, value)
+
+    def _find_and_delete(self, root: Optional[TreeNode], value: int):
+        if root is None:
+            return root
+
+        if value &lt; root.data:
+            root.left = self._find_and_delete(root.left, value)
+        elif value &gt; root.data:
+            root.right = self._find_and_delete(root.right, value)
+        else:  # Node to be deleted has found!
+            # Case-1: Node to be removed has no children.
+            if root.left is None and root.right is None:
+                root = None
+            # Case-2: Node to be removed has exactly one child
+            elif root.left is None:
+                root = root.right
+            elif root.right is None:
+                root = root.left
+            # Case-3: Node to be removed has both left and right child
+            else:
+                right_min_node = self._find_minimum_node(root.right)
+                root.data = right_min_node.data
+                root.right = self._find_and_delete(root.right, right_min_node.data)
+
+        return root
+
+    def contains(self, value: int) -&gt; bool:
+        &#34;&#34;&#34;Check whether the tree contains a specific node or not.&#34;&#34;&#34;
+        return self._contains(self._root, value)
+
+    def _contains(self, root: TreeNode, value: int) -&gt; bool:
+        if root is None:
+            return False
+        if value == root.data:
+            return True
+
+        return self._contains(root.left, value) if value &lt; root.data else self._contains(root.right, value)
+
+    def find(self, value: int) -&gt; TreeNode:
+        &#34;&#34;&#34;Return the node from the BST that correspond to the given value.&#34;&#34;&#34;
+        return self._find(self._root, value)
+
+    def _find(self, cur_node: TreeNode, value: int) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Time Complexity O(h).&#34;&#34;&#34;
+        if cur_node is None or value == cur_node.data:
+            return cur_node
+        elif value &lt; cur_node.data:
+            return self._find(cur_node.left, value)
+        else:
+            return self._find(cur_node.right, value)
+
+    def get_height(self) -&gt; int:
+        &#34;&#34;&#34;Return the height of a binary tree.
+
+        Height is the number of edges between the tree&#39;s root and its furthest leaf.
+        &#34;&#34;&#34;
+        return self._get_height(self._root)
+
+    def _get_height(self, root: TreeNode) -&gt; int:
+        if root is None:
+            return -1  # we have already counted one null child. therefore deduct 1;
+        return 1 + max(self._get_height(root.left), self._get_height(root.right))
+
+    def max_depth(self) -&gt; int:
+        &#34;&#34;&#34;Number of nodes along the longest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+        return self._max_depth(self._root)
+
+    def _max_depth(self, root) -&gt; int:
+        if root is None:
+            return 0
+
+        return 1 + max(self._max_depth(root.left), self._max_depth(root.right))
+
+    def min_depth(self) -&gt; int:
+        &#34;&#34;&#34;Number of nodes along the shortest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+        return self._min_depth(self._root)
+
+    def _min_depth(self, root) -&gt; int:
+        if root is None:
+            return 0
+
+        min_left = self._min_depth(root.left)
+        min_right = self._min_depth(root.right)
+
+        if min_left == 0 or min_right == 0:  # skewed tree; min(0, *) = 0
+            return 1 + max(min_left, min_right)
+
+        return 1 + min(min_left, min_right)
+
+    def _find_minimum_node(self, root: TreeNode) -&gt; TreeNode:
+        &#34;&#34;&#34;Return the minimum node, i.e., left most node of BST.&#34;&#34;&#34;
+        if root.left is None:
+            return root
+        else:
+            return self._find_minimum_node(root.left)
+
+    def find_minimum_value(self) -&gt; int:
+        &#34;&#34;&#34;Return the left most node&#39;s value. The node whose left is None is the node with minimum value.&#34;&#34;&#34;
+        if self._root is None:
+            raise ValueError(&#34;Tree is empty!&#34;)
+
+        cur_node = self._root
+        while cur_node.left:
+            cur_node = cur_node.left
+        return cur_node.data  # type: ignore
+
+    def find_maximum_value(self) -&gt; int:
+        &#34;&#34;&#34;Return the right most node&#39;s value. The node whose right is None is the node with maximum value.&#34;&#34;&#34;
+        if self._root is None:
+            raise ValueError(&#34;Tree is empty!&#34;)
+
+        cur_node = self._root
+        while cur_node.right:
+            cur_node = cur_node.right
+        return cur_node.data  # type: ignore
+
+    def level_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Breadth first order, aka, level-order traversal.&#34;&#34;&#34;
+        values = []
+        queue = deque([self._root] if self._root else [])
+
+        while queue:
+            cur_node = queue.popleft()
+            values.append(cur_node.data)
+            if cur_node.left:
+                queue.append(cur_node.left)
+            if cur_node.right:
+                queue.append(cur_node.right)
+
+        return values
+
+    def pre_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first pre-order, i.e., root -&gt; left -&gt; right.&#34;&#34;&#34;
+
+        def _pre_order(root: TreeNode):
+            if root:
+                values.append(root.data)
+                _pre_order(root.left)
+                _pre_order(root.right)
+
+        values: List[int] = []
+        _pre_order(self._root)
+        return values
+
+    def in_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first in-order, i.e., left -&gt; root -&gt; right.&#34;&#34;&#34;
+        return self._in_order(self._root)
+
+    def _in_order(self, root: TreeNode, values: List[int] = None) -&gt; List[int]:
+        if values is None:
+            values = list()
+        if root is None:
+            return values
+
+        self._in_order(root.left, values)
+        values.append(root.data)
+        self._in_order(root.right, values)
+
+        return values
+
+    def post_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first post-order, i.e., left -&gt; right -&gt; root.&#34;&#34;&#34;
+        return self._post_order(self._root)
+
+    def _post_order(self, root: TreeNode) -&gt; List[int]:
+        return self._post_order(root.left) + self._post_order(root.right) + [root.data] if root else []
+
+    def is_valid_bst1(self) -&gt; bool:
+        &#34;&#34;&#34;Return True if the given binary tree is a BST, otherwise False.&#34;&#34;&#34;
+        return self._is_valid1(self._root, -maxsize, maxsize)
+
+    def _is_valid1(self, root: TreeNode, low: int, high: int) -&gt; bool:
+        if root is None:
+            return True
+        if root.data &lt; low or root.data &gt; high:
+            return False
+
+        return self._is_valid1(root.left, low, root.data) and self._is_valid1(root.right, root.data, high)
+
+    def is_valid_bst2(self) -&gt; bool:
+        &#34;&#34;&#34;Check whether a binary tree is binary search tree or not.
+
+        Traverse the tree in-order fashion and check every node is greater than or equal to the previous node.
+        &#34;&#34;&#34;
+
+        def _is_valid2(curr_node: Optional[TreeNode], prev_node: Optional[TreeNode]) -&gt; bool:
+            if curr_node is None:
+                return True
+            if not _is_valid2(curr_node.left, prev_node):
+                return False
+            if prev_node and curr_node.data &lt; prev_node.data:
+                return False
+            prev_node = curr_node
+            if not _is_valid2(curr_node.right, prev_node):
+                return False
+
+            return True
+
+        return _is_valid2(self._root, None)
+
+    def is_complete(self):
+        &#34;&#34;&#34;Check whether the binary tree is complete or not.
+
+        A binary tree is complete if its every node has zero or exactly two children.
+        &#34;&#34;&#34;
+        if self._root is None:
+            return True
+        return self._complete(self._root)
+
+    def _complete(self, root: TreeNode) -&gt; bool:
+        if root.left is None and root.right is None:
+            return True
+        elif root.left and root.right:
+            return self._complete(root.left) and self._complete(root.right)
+        else:
+            return False
+
+    def find_inorder_successor(self, value: int) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Return the in-order successor of a node associated with the given value in a BST.&#34;&#34;&#34;
+        curr_node = self._find(self._root, value)
+        if curr_node is None:
+            return None
+
+        if curr_node.right:
+            # Case 1: Node has right subtree.
+            # Left most node, i.e., minimum node, in right subtree is the inorder successor of current node.
+            return self._find_minimum_node(curr_node.right)
+        else:
+            # Case 2: No right subtree.
+            # Go to the nearest ancestor for which given node would be in left subtree.
+            successor = None
+            ancestor = self._root
+            assert isinstance(ancestor, TreeNode)
+            while ancestor != curr_node:
+                if curr_node.data &lt; ancestor.data:
+                    successor = ancestor  # so far this is the deepest node for which current node is in the left.
+                    ancestor = ancestor.left
+                else:
+                    ancestor = ancestor.right
+            return successor
+
+    def display(self) -&gt; List[int]:
+        &#34;&#34;&#34;Return a serialized format of a binary tree using level order traversal.
+
+        Here, None signifies a path terminator where no node exists below.
+        &#34;&#34;&#34;
+        values = []
+        cur_level = [self._root]
+
+        while any(cur_level):
+            next_level = []
+            for node in cur_level:
+                if node:
+                    values.append(node.data)
+                    next_level.append(node.left if node.left else None)
+                    next_level.append(node.right if node.right else None)
+                else:
+                    values.append(None)
+            cur_level = next_level
+
+        return values
+
+    @staticmethod
+    def bst_from_sorted_array(nums: List[int]) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Construct a height-balanced binary search tree from a sorted array.&#34;&#34;&#34;
+
+        def balanced_bst(low, high) -&gt; Optional[TreeNode]:
+            if low &gt; high:
+                return None
+            elif low == high:
+                return TreeNode(nums[low])
+
+            mid = (low + high) // 2
+            root = TreeNode(nums[mid])
+            root.left = balanced_bst(low, mid - 1)
+            root.right = balanced_bst(mid + 1, high)
+
+            return root
+
+        if not nums:
+            return None
+        else:
+            return balanced_bst(0, len(nums) - 1)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="mypkg.tree.bst.BST"><code class="flex name class">
+<span>class <span class="ident">BST</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Binary Search Tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BST:
+    &#34;&#34;&#34;Binary Search Tree.&#34;&#34;&#34;
+
+    def __init__(self):
+        self._root: Optional[TreeNode] = None
+
+    def insert(self, value: int):
+        &#34;&#34;&#34;Insert a value into the BST.&#34;&#34;&#34;
+        if self._root is None:
+            self._root = TreeNode(value)
+        else:
+            self._insert_recur(self._root, value)
+
+    def _insert_recur(self, cur_node: TreeNode, value: int):
+        if value &lt; cur_node.data:
+            if cur_node.left is None:
+                cur_node.left = TreeNode(value)
+            else:
+                self._insert_recur(cur_node.left, value)
+        else:
+            if cur_node.right is None:
+                cur_node.right = TreeNode(value)
+            else:
+                self._insert_recur(cur_node.right, value)
+
+    def delete(self, value: int):
+        &#34;&#34;&#34;Delete the node from BST corresponding to the given value.&#34;&#34;&#34;
+        return self._find_and_delete(self._root, value)
+
+    def _find_and_delete(self, root: Optional[TreeNode], value: int):
+        if root is None:
+            return root
+
+        if value &lt; root.data:
+            root.left = self._find_and_delete(root.left, value)
+        elif value &gt; root.data:
+            root.right = self._find_and_delete(root.right, value)
+        else:  # Node to be deleted has found!
+            # Case-1: Node to be removed has no children.
+            if root.left is None and root.right is None:
+                root = None
+            # Case-2: Node to be removed has exactly one child
+            elif root.left is None:
+                root = root.right
+            elif root.right is None:
+                root = root.left
+            # Case-3: Node to be removed has both left and right child
+            else:
+                right_min_node = self._find_minimum_node(root.right)
+                root.data = right_min_node.data
+                root.right = self._find_and_delete(root.right, right_min_node.data)
+
+        return root
+
+    def contains(self, value: int) -&gt; bool:
+        &#34;&#34;&#34;Check whether the tree contains a specific node or not.&#34;&#34;&#34;
+        return self._contains(self._root, value)
+
+    def _contains(self, root: TreeNode, value: int) -&gt; bool:
+        if root is None:
+            return False
+        if value == root.data:
+            return True
+
+        return self._contains(root.left, value) if value &lt; root.data else self._contains(root.right, value)
+
+    def find(self, value: int) -&gt; TreeNode:
+        &#34;&#34;&#34;Return the node from the BST that correspond to the given value.&#34;&#34;&#34;
+        return self._find(self._root, value)
+
+    def _find(self, cur_node: TreeNode, value: int) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Time Complexity O(h).&#34;&#34;&#34;
+        if cur_node is None or value == cur_node.data:
+            return cur_node
+        elif value &lt; cur_node.data:
+            return self._find(cur_node.left, value)
+        else:
+            return self._find(cur_node.right, value)
+
+    def get_height(self) -&gt; int:
+        &#34;&#34;&#34;Return the height of a binary tree.
+
+        Height is the number of edges between the tree&#39;s root and its furthest leaf.
+        &#34;&#34;&#34;
+        return self._get_height(self._root)
+
+    def _get_height(self, root: TreeNode) -&gt; int:
+        if root is None:
+            return -1  # we have already counted one null child. therefore deduct 1;
+        return 1 + max(self._get_height(root.left), self._get_height(root.right))
+
+    def max_depth(self) -&gt; int:
+        &#34;&#34;&#34;Number of nodes along the longest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+        return self._max_depth(self._root)
+
+    def _max_depth(self, root) -&gt; int:
+        if root is None:
+            return 0
+
+        return 1 + max(self._max_depth(root.left), self._max_depth(root.right))
+
+    def min_depth(self) -&gt; int:
+        &#34;&#34;&#34;Number of nodes along the shortest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+        return self._min_depth(self._root)
+
+    def _min_depth(self, root) -&gt; int:
+        if root is None:
+            return 0
+
+        min_left = self._min_depth(root.left)
+        min_right = self._min_depth(root.right)
+
+        if min_left == 0 or min_right == 0:  # skewed tree; min(0, *) = 0
+            return 1 + max(min_left, min_right)
+
+        return 1 + min(min_left, min_right)
+
+    def _find_minimum_node(self, root: TreeNode) -&gt; TreeNode:
+        &#34;&#34;&#34;Return the minimum node, i.e., left most node of BST.&#34;&#34;&#34;
+        if root.left is None:
+            return root
+        else:
+            return self._find_minimum_node(root.left)
+
+    def find_minimum_value(self) -&gt; int:
+        &#34;&#34;&#34;Return the left most node&#39;s value. The node whose left is None is the node with minimum value.&#34;&#34;&#34;
+        if self._root is None:
+            raise ValueError(&#34;Tree is empty!&#34;)
+
+        cur_node = self._root
+        while cur_node.left:
+            cur_node = cur_node.left
+        return cur_node.data  # type: ignore
+
+    def find_maximum_value(self) -&gt; int:
+        &#34;&#34;&#34;Return the right most node&#39;s value. The node whose right is None is the node with maximum value.&#34;&#34;&#34;
+        if self._root is None:
+            raise ValueError(&#34;Tree is empty!&#34;)
+
+        cur_node = self._root
+        while cur_node.right:
+            cur_node = cur_node.right
+        return cur_node.data  # type: ignore
+
+    def level_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Breadth first order, aka, level-order traversal.&#34;&#34;&#34;
+        values = []
+        queue = deque([self._root] if self._root else [])
+
+        while queue:
+            cur_node = queue.popleft()
+            values.append(cur_node.data)
+            if cur_node.left:
+                queue.append(cur_node.left)
+            if cur_node.right:
+                queue.append(cur_node.right)
+
+        return values
+
+    def pre_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first pre-order, i.e., root -&gt; left -&gt; right.&#34;&#34;&#34;
+
+        def _pre_order(root: TreeNode):
+            if root:
+                values.append(root.data)
+                _pre_order(root.left)
+                _pre_order(root.right)
+
+        values: List[int] = []
+        _pre_order(self._root)
+        return values
+
+    def in_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first in-order, i.e., left -&gt; root -&gt; right.&#34;&#34;&#34;
+        return self._in_order(self._root)
+
+    def _in_order(self, root: TreeNode, values: List[int] = None) -&gt; List[int]:
+        if values is None:
+            values = list()
+        if root is None:
+            return values
+
+        self._in_order(root.left, values)
+        values.append(root.data)
+        self._in_order(root.right, values)
+
+        return values
+
+    def post_order_traverse(self) -&gt; List[int]:
+        &#34;&#34;&#34;Traverse the nodes in BST, as Depth first post-order, i.e., left -&gt; right -&gt; root.&#34;&#34;&#34;
+        return self._post_order(self._root)
+
+    def _post_order(self, root: TreeNode) -&gt; List[int]:
+        return self._post_order(root.left) + self._post_order(root.right) + [root.data] if root else []
+
+    def is_valid_bst1(self) -&gt; bool:
+        &#34;&#34;&#34;Return True if the given binary tree is a BST, otherwise False.&#34;&#34;&#34;
+        return self._is_valid1(self._root, -maxsize, maxsize)
+
+    def _is_valid1(self, root: TreeNode, low: int, high: int) -&gt; bool:
+        if root is None:
+            return True
+        if root.data &lt; low or root.data &gt; high:
+            return False
+
+        return self._is_valid1(root.left, low, root.data) and self._is_valid1(root.right, root.data, high)
+
+    def is_valid_bst2(self) -&gt; bool:
+        &#34;&#34;&#34;Check whether a binary tree is binary search tree or not.
+
+        Traverse the tree in-order fashion and check every node is greater than or equal to the previous node.
+        &#34;&#34;&#34;
+
+        def _is_valid2(curr_node: Optional[TreeNode], prev_node: Optional[TreeNode]) -&gt; bool:
+            if curr_node is None:
+                return True
+            if not _is_valid2(curr_node.left, prev_node):
+                return False
+            if prev_node and curr_node.data &lt; prev_node.data:
+                return False
+            prev_node = curr_node
+            if not _is_valid2(curr_node.right, prev_node):
+                return False
+
+            return True
+
+        return _is_valid2(self._root, None)
+
+    def is_complete(self):
+        &#34;&#34;&#34;Check whether the binary tree is complete or not.
+
+        A binary tree is complete if its every node has zero or exactly two children.
+        &#34;&#34;&#34;
+        if self._root is None:
+            return True
+        return self._complete(self._root)
+
+    def _complete(self, root: TreeNode) -&gt; bool:
+        if root.left is None and root.right is None:
+            return True
+        elif root.left and root.right:
+            return self._complete(root.left) and self._complete(root.right)
+        else:
+            return False
+
+    def find_inorder_successor(self, value: int) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Return the in-order successor of a node associated with the given value in a BST.&#34;&#34;&#34;
+        curr_node = self._find(self._root, value)
+        if curr_node is None:
+            return None
+
+        if curr_node.right:
+            # Case 1: Node has right subtree.
+            # Left most node, i.e., minimum node, in right subtree is the inorder successor of current node.
+            return self._find_minimum_node(curr_node.right)
+        else:
+            # Case 2: No right subtree.
+            # Go to the nearest ancestor for which given node would be in left subtree.
+            successor = None
+            ancestor = self._root
+            assert isinstance(ancestor, TreeNode)
+            while ancestor != curr_node:
+                if curr_node.data &lt; ancestor.data:
+                    successor = ancestor  # so far this is the deepest node for which current node is in the left.
+                    ancestor = ancestor.left
+                else:
+                    ancestor = ancestor.right
+            return successor
+
+    def display(self) -&gt; List[int]:
+        &#34;&#34;&#34;Return a serialized format of a binary tree using level order traversal.
+
+        Here, None signifies a path terminator where no node exists below.
+        &#34;&#34;&#34;
+        values = []
+        cur_level = [self._root]
+
+        while any(cur_level):
+            next_level = []
+            for node in cur_level:
+                if node:
+                    values.append(node.data)
+                    next_level.append(node.left if node.left else None)
+                    next_level.append(node.right if node.right else None)
+                else:
+                    values.append(None)
+            cur_level = next_level
+
+        return values
+
+    @staticmethod
+    def bst_from_sorted_array(nums: List[int]) -&gt; Optional[TreeNode]:
+        &#34;&#34;&#34;Construct a height-balanced binary search tree from a sorted array.&#34;&#34;&#34;
+
+        def balanced_bst(low, high) -&gt; Optional[TreeNode]:
+            if low &gt; high:
+                return None
+            elif low == high:
+                return TreeNode(nums[low])
+
+            mid = (low + high) // 2
+            root = TreeNode(nums[mid])
+            root.left = balanced_bst(low, mid - 1)
+            root.right = balanced_bst(mid + 1, high)
+
+            return root
+
+        if not nums:
+            return None
+        else:
+            return balanced_bst(0, len(nums) - 1)</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="mypkg.tree.bst.BST.bst_from_sorted_array"><code class="name flex">
+<span>def <span class="ident">bst_from_sorted_array</span></span>(<span>nums: List[int]) ‑> Union[<a title="mypkg.tree.tree_node.TreeNode" href="tree_node.html#mypkg.tree.tree_node.TreeNode">TreeNode</a>, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct a height-balanced binary search tree from a sorted array.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def bst_from_sorted_array(nums: List[int]) -&gt; Optional[TreeNode]:
+    &#34;&#34;&#34;Construct a height-balanced binary search tree from a sorted array.&#34;&#34;&#34;
+
+    def balanced_bst(low, high) -&gt; Optional[TreeNode]:
+        if low &gt; high:
+            return None
+        elif low == high:
+            return TreeNode(nums[low])
+
+        mid = (low + high) // 2
+        root = TreeNode(nums[mid])
+        root.left = balanced_bst(low, mid - 1)
+        root.right = balanced_bst(mid + 1, high)
+
+        return root
+
+    if not nums:
+        return None
+    else:
+        return balanced_bst(0, len(nums) - 1)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="mypkg.tree.bst.BST.contains"><code class="name flex">
+<span>def <span class="ident">contains</span></span>(<span>self, value: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check whether the tree contains a specific node or not.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def contains(self, value: int) -&gt; bool:
+    &#34;&#34;&#34;Check whether the tree contains a specific node or not.&#34;&#34;&#34;
+    return self._contains(self._root, value)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, value: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete the node from BST corresponding to the given value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete(self, value: int):
+    &#34;&#34;&#34;Delete the node from BST corresponding to the given value.&#34;&#34;&#34;
+    return self._find_and_delete(self._root, value)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.display"><code class="name flex">
+<span>def <span class="ident">display</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a serialized format of a binary tree using level order traversal.</p>
+<p>Here, None signifies a path terminator where no node exists below.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display(self) -&gt; List[int]:
+    &#34;&#34;&#34;Return a serialized format of a binary tree using level order traversal.
+
+    Here, None signifies a path terminator where no node exists below.
+    &#34;&#34;&#34;
+    values = []
+    cur_level = [self._root]
+
+    while any(cur_level):
+        next_level = []
+        for node in cur_level:
+            if node:
+                values.append(node.data)
+                next_level.append(node.left if node.left else None)
+                next_level.append(node.right if node.right else None)
+            else:
+                values.append(None)
+        cur_level = next_level
+
+    return values</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, value: int) ‑> <a title="mypkg.tree.tree_node.TreeNode" href="tree_node.html#mypkg.tree.tree_node.TreeNode">TreeNode</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the node from the BST that correspond to the given value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find(self, value: int) -&gt; TreeNode:
+    &#34;&#34;&#34;Return the node from the BST that correspond to the given value.&#34;&#34;&#34;
+    return self._find(self._root, value)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.find_inorder_successor"><code class="name flex">
+<span>def <span class="ident">find_inorder_successor</span></span>(<span>self, value: int) ‑> Union[<a title="mypkg.tree.tree_node.TreeNode" href="tree_node.html#mypkg.tree.tree_node.TreeNode">TreeNode</a>, NoneType]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the in-order successor of a node associated with the given value in a BST.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_inorder_successor(self, value: int) -&gt; Optional[TreeNode]:
+    &#34;&#34;&#34;Return the in-order successor of a node associated with the given value in a BST.&#34;&#34;&#34;
+    curr_node = self._find(self._root, value)
+    if curr_node is None:
+        return None
+
+    if curr_node.right:
+        # Case 1: Node has right subtree.
+        # Left most node, i.e., minimum node, in right subtree is the inorder successor of current node.
+        return self._find_minimum_node(curr_node.right)
+    else:
+        # Case 2: No right subtree.
+        # Go to the nearest ancestor for which given node would be in left subtree.
+        successor = None
+        ancestor = self._root
+        assert isinstance(ancestor, TreeNode)
+        while ancestor != curr_node:
+            if curr_node.data &lt; ancestor.data:
+                successor = ancestor  # so far this is the deepest node for which current node is in the left.
+                ancestor = ancestor.left
+            else:
+                ancestor = ancestor.right
+        return successor</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.find_maximum_value"><code class="name flex">
+<span>def <span class="ident">find_maximum_value</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the right most node's value. The node whose right is None is the node with maximum value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_maximum_value(self) -&gt; int:
+    &#34;&#34;&#34;Return the right most node&#39;s value. The node whose right is None is the node with maximum value.&#34;&#34;&#34;
+    if self._root is None:
+        raise ValueError(&#34;Tree is empty!&#34;)
+
+    cur_node = self._root
+    while cur_node.right:
+        cur_node = cur_node.right
+    return cur_node.data  # type: ignore</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.find_minimum_value"><code class="name flex">
+<span>def <span class="ident">find_minimum_value</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the left most node's value. The node whose left is None is the node with minimum value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_minimum_value(self) -&gt; int:
+    &#34;&#34;&#34;Return the left most node&#39;s value. The node whose left is None is the node with minimum value.&#34;&#34;&#34;
+    if self._root is None:
+        raise ValueError(&#34;Tree is empty!&#34;)
+
+    cur_node = self._root
+    while cur_node.left:
+        cur_node = cur_node.left
+    return cur_node.data  # type: ignore</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.get_height"><code class="name flex">
+<span>def <span class="ident">get_height</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the height of a binary tree.</p>
+<p>Height is the number of edges between the tree's root and its furthest leaf.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_height(self) -&gt; int:
+    &#34;&#34;&#34;Return the height of a binary tree.
+
+    Height is the number of edges between the tree&#39;s root and its furthest leaf.
+    &#34;&#34;&#34;
+    return self._get_height(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.in_order_traverse"><code class="name flex">
+<span>def <span class="ident">in_order_traverse</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Traverse the nodes in BST, as Depth first in-order, i.e., left -&gt; root -&gt; right.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def in_order_traverse(self) -&gt; List[int]:
+    &#34;&#34;&#34;Traverse the nodes in BST, as Depth first in-order, i.e., left -&gt; root -&gt; right.&#34;&#34;&#34;
+    return self._in_order(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, value: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert a value into the BST.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def insert(self, value: int):
+    &#34;&#34;&#34;Insert a value into the BST.&#34;&#34;&#34;
+    if self._root is None:
+        self._root = TreeNode(value)
+    else:
+        self._insert_recur(self._root, value)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.is_complete"><code class="name flex">
+<span>def <span class="ident">is_complete</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check whether the binary tree is complete or not.</p>
+<p>A binary tree is complete if its every node has zero or exactly two children.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_complete(self):
+    &#34;&#34;&#34;Check whether the binary tree is complete or not.
+
+    A binary tree is complete if its every node has zero or exactly two children.
+    &#34;&#34;&#34;
+    if self._root is None:
+        return True
+    return self._complete(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.is_valid_bst1"><code class="name flex">
+<span>def <span class="ident">is_valid_bst1</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return True if the given binary tree is a BST, otherwise False.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_valid_bst1(self) -&gt; bool:
+    &#34;&#34;&#34;Return True if the given binary tree is a BST, otherwise False.&#34;&#34;&#34;
+    return self._is_valid1(self._root, -maxsize, maxsize)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.is_valid_bst2"><code class="name flex">
+<span>def <span class="ident">is_valid_bst2</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check whether a binary tree is binary search tree or not.</p>
+<p>Traverse the tree in-order fashion and check every node is greater than or equal to the previous node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_valid_bst2(self) -&gt; bool:
+    &#34;&#34;&#34;Check whether a binary tree is binary search tree or not.
+
+    Traverse the tree in-order fashion and check every node is greater than or equal to the previous node.
+    &#34;&#34;&#34;
+
+    def _is_valid2(curr_node: Optional[TreeNode], prev_node: Optional[TreeNode]) -&gt; bool:
+        if curr_node is None:
+            return True
+        if not _is_valid2(curr_node.left, prev_node):
+            return False
+        if prev_node and curr_node.data &lt; prev_node.data:
+            return False
+        prev_node = curr_node
+        if not _is_valid2(curr_node.right, prev_node):
+            return False
+
+        return True
+
+    return _is_valid2(self._root, None)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.level_order_traverse"><code class="name flex">
+<span>def <span class="ident">level_order_traverse</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Traverse the nodes in BST, as Breadth first order, aka, level-order traversal.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def level_order_traverse(self) -&gt; List[int]:
+    &#34;&#34;&#34;Traverse the nodes in BST, as Breadth first order, aka, level-order traversal.&#34;&#34;&#34;
+    values = []
+    queue = deque([self._root] if self._root else [])
+
+    while queue:
+        cur_node = queue.popleft()
+        values.append(cur_node.data)
+        if cur_node.left:
+            queue.append(cur_node.left)
+        if cur_node.right:
+            queue.append(cur_node.right)
+
+    return values</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.max_depth"><code class="name flex">
+<span>def <span class="ident">max_depth</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Number of nodes along the longest path from the root node down to the farthest leaf node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def max_depth(self) -&gt; int:
+    &#34;&#34;&#34;Number of nodes along the longest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+    return self._max_depth(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.min_depth"><code class="name flex">
+<span>def <span class="ident">min_depth</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Number of nodes along the shortest path from the root node down to the farthest leaf node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def min_depth(self) -&gt; int:
+    &#34;&#34;&#34;Number of nodes along the shortest path from the root node down to the farthest leaf node.&#34;&#34;&#34;
+    return self._min_depth(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.post_order_traverse"><code class="name flex">
+<span>def <span class="ident">post_order_traverse</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Traverse the nodes in BST, as Depth first post-order, i.e., left -&gt; right -&gt; root.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def post_order_traverse(self) -&gt; List[int]:
+    &#34;&#34;&#34;Traverse the nodes in BST, as Depth first post-order, i.e., left -&gt; right -&gt; root.&#34;&#34;&#34;
+    return self._post_order(self._root)</code></pre>
+</details>
+</dd>
+<dt id="mypkg.tree.bst.BST.pre_order_traverse"><code class="name flex">
+<span>def <span class="ident">pre_order_traverse</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Traverse the nodes in BST, as Depth first pre-order, i.e., root -&gt; left -&gt; right.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pre_order_traverse(self) -&gt; List[int]:
+    &#34;&#34;&#34;Traverse the nodes in BST, as Depth first pre-order, i.e., root -&gt; left -&gt; right.&#34;&#34;&#34;
+
+    def _pre_order(root: TreeNode):
+        if root:
+            values.append(root.data)
+            _pre_order(root.left)
+            _pre_order(root.right)
+
+    values: List[int] = []
+    _pre_order(self._root)
+    return values</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mypkg.tree" href="index.html">mypkg.tree</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="mypkg.tree.bst.BST" href="#mypkg.tree.bst.BST">BST</a></code></h4>
+<ul class="">
+<li><code><a title="mypkg.tree.bst.BST.bst_from_sorted_array" href="#mypkg.tree.bst.BST.bst_from_sorted_array">bst_from_sorted_array</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.contains" href="#mypkg.tree.bst.BST.contains">contains</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.delete" href="#mypkg.tree.bst.BST.delete">delete</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.display" href="#mypkg.tree.bst.BST.display">display</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.find" href="#mypkg.tree.bst.BST.find">find</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.find_inorder_successor" href="#mypkg.tree.bst.BST.find_inorder_successor">find_inorder_successor</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.find_maximum_value" href="#mypkg.tree.bst.BST.find_maximum_value">find_maximum_value</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.find_minimum_value" href="#mypkg.tree.bst.BST.find_minimum_value">find_minimum_value</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.get_height" href="#mypkg.tree.bst.BST.get_height">get_height</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.in_order_traverse" href="#mypkg.tree.bst.BST.in_order_traverse">in_order_traverse</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.insert" href="#mypkg.tree.bst.BST.insert">insert</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.is_complete" href="#mypkg.tree.bst.BST.is_complete">is_complete</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.is_valid_bst1" href="#mypkg.tree.bst.BST.is_valid_bst1">is_valid_bst1</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.is_valid_bst2" href="#mypkg.tree.bst.BST.is_valid_bst2">is_valid_bst2</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.level_order_traverse" href="#mypkg.tree.bst.BST.level_order_traverse">level_order_traverse</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.max_depth" href="#mypkg.tree.bst.BST.max_depth">max_depth</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.min_depth" href="#mypkg.tree.bst.BST.min_depth">min_depth</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.post_order_traverse" href="#mypkg.tree.bst.BST.post_order_traverse">post_order_traverse</a></code></li>
+<li><code><a title="mypkg.tree.bst.BST.pre_order_traverse" href="#mypkg.tree.bst.BST.pre_order_traverse">pre_order_traverse</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.5</a>.</p>
+</footer>
+</body>
+</html>
