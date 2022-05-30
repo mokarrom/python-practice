@@ -129,3 +129,15 @@ class MaxHeapObj(object):
     def __str__(self):
         """Override str method."""
         return str(self.char)
+
+
+class Person:
+    """Custom compare in min-heap."""
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __lt__(self, other):
+        """Override lt method. If you don't override, test will fails."""
+        return self.age < other.age

@@ -1,7 +1,6 @@
 import heapq
 from collections import Counter
-from mypkg.misc.heap import MinHeap
-from mypkg.misc.heap import MaxHeapObj
+from mypkg.misc.heap import MinHeap, MaxHeapObj, Person
 
 
 def test_min_heap():
@@ -79,3 +78,11 @@ def test_max_heap():
         sorted_chars.append((heap_obj.char, heap_obj.freq))
 
     assert sorted_chars == [("d", 1), ("c", 2), ("b", 3), ("a", 4)]
+
+
+def test_custom_heap():
+    min_heap = [("a-1", Person("aaa", 65)), ("a-1", Person("abc", 35)), ("b-1", Person("bbb", 55))]
+    heapq.heapify(min_heap)
+    sin, person = heapq.heappop(min_heap)
+    assert sin == "a-1"
+    assert person.age == 35
