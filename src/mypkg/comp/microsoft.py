@@ -1,3 +1,5 @@
+"""Microsoft exam module."""
+
 
 def max_num(n: int) -> int:
     """Given an integer N, return maximum number after deleting one '5'. N will contian at least one '5'."""

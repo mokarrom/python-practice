@@ -8,6 +8,3 @@ def test_max_sum():
     assert max_num(-1500) == -100
     # for i in range(len(nums)):
     #     assert max_num(nums[i]) == expected_nums[i]
-
-
-
