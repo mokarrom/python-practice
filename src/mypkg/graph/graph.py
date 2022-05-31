@@ -1,7 +1,7 @@
 """Graph algorithms."""
 import pprint
-from collections import defaultdict
-from typing import List, Set, Tuple, Dict
+from collections import defaultdict, deque
+from typing import List, Set, Tuple, Dict, Deque
 
 
 class Graph(object):
@@ -63,7 +63,7 @@ class Graph(object):
         """Return the Breadth-first traversal."""
         visited: List[str] = list()
         seen: Set[str] = set()
-        queue: List[str] = list()
+        queue: Deque[str] = deque()
 
         if start_node not in self._graph:
             return visited
@@ -72,7 +72,7 @@ class Graph(object):
         queue.append(start_node)
 
         while queue:
-            cur_node = queue.pop(0)
+            cur_node = queue.popleft()
             visited.append(cur_node)
             for neighbor in self._graph[cur_node]:
                 if neighbor not in seen:
