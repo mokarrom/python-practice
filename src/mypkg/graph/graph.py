@@ -125,7 +125,8 @@ class Graph(object):
         """Return the topological order of vertices.
 
         For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
-        vertex u comes before v in the ordering.
+        vertex u comes before v in the ordering. It is a graph traversal in which each node v
+        is visited only after all its dependencies are visited.
         """
         seen: Set[str] = set()
         stack: List[str] = list()
