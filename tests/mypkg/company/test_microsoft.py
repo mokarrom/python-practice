@@ -1,4 +1,4 @@
-from mypkg.comp.microsoft import max_num
+from mypkg.company.microsoft import max_num
 
 
 def test_max_sum():
