@@ -1,6 +1,6 @@
 """This module contains all sliding window or two pointer related problems."""
 from typing import Set, Dict
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 
 def lengthOfLongestSubstring(s: str) -> int:
@@ -94,3 +94,42 @@ def count_klen_substr_no_repeat(s: str, k: int) -> int:
             left += 1
 
     return substr_count
+
+
+def minWindow(s: str, t: str) -> str:
+    """Return the minimum window substring of s such that all character in t is included in the window.
+
+    Time Complexity: O(|S| + |T|)
+    Space Complexity: O(|S| + |T|)
+    """
+    t_counter = Counter(t)
+    w_counter: Dict[str, int] = {}  # this is a frequency counter (<char, frequency>) of the current window.
+    start = min_start = count = 0
+    min_len = len(s) + 1  # the length of a substring cannot be greater than the length of string itself.
+
+    for end in range(len(s)):
+        ch = s[end]
+
+        if ch not in t_counter:
+            continue
+
+        w_counter[ch] = w_counter.get(ch, 0) + 1
+
+        if w_counter[ch] == t_counter[ch]:
+            count += 1
+
+        # Contract the window to get a smaller one until the window is valid.
+        while count == len(t_counter):
+            if end - start + 1 < min_len:
+                min_len = end - start + 1
+                min_start = start
+
+            ch = s[start]
+            start += 1
+            if ch not in t_counter:
+                continue
+            w_counter[ch] -= 1
+            if w_counter[ch] < t_counter[ch]:
+                count -= 1
+
+    return "" if min_len == len(s) + 1 else s[min_start : min_start + min_len]

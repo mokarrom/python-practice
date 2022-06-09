@@ -3,6 +3,7 @@ from mypkg.string.sliding_window import (
     count_klen_substr_no_repeat,
     lengthOfLongestSubstring,
     length_of_longest_substring,
+    minWindow,
 )
 
 
@@ -35,3 +36,21 @@ def test_lengthOfLongestSubstring():
     s = "pwwkew"
     assert lengthOfLongestSubstring(s) == 3
     assert length_of_longest_substring(s) == 3
+
+
+def test_minWindow():
+    s = "ADOBECODEBANC"
+    t = "ABC"
+    assert minWindow(s, t) == "BANC"
+
+    s = "a"
+    t = "a"
+    assert minWindow(s, t) == "a"
+
+    s = "a"
+    t = "aa"
+    assert minWindow(s, t) == ""
+
+    s = "ab"
+    t = "a"
+    assert minWindow(s, t) == "a"
