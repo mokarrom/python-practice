@@ -7,6 +7,7 @@ from mypkg.string.sliding_window import (
     lengthOfLongestSubstringTwoDistinct,
     lengthOfLongestSubstringTwoDistinct_2,
     lengthOfLongestSubstringKDistinct,
+    numberOfSubstrings,
 )
 
 
@@ -81,3 +82,14 @@ def test_lengthOfLongestSubstringKDistinct():
     s = "aa"
     k = 1
     assert lengthOfLongestSubstringKDistinct(s, k) == 2
+
+
+def test_numberOfSubstrings():
+    s = "abcabc"
+    assert numberOfSubstrings(s) == 10
+
+    s = "aaacb"
+    assert numberOfSubstrings(s) == 3
+
+    s = "abc"
+    assert numberOfSubstrings(s) == 1

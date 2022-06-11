@@ -223,3 +223,26 @@ def lengthOfLongestSubstringKDistinct(s: str, k: int) -> int:
         max_len = max(max_len, right - left + 1)
 
     return max_len
+
+
+def numberOfSubstrings(s: str) -> int:
+    """Given a string s consisting only of characters a, b and c.
+
+    Return the number of substrings containing at least one occurrence of all these characters a, b and c.
+    Ref: https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/
+
+    Explanation:  input = "abcabc" output = 10
+    ------------
+
+    abc = 1       "abc"
+    a bca = 2     "bca", "abca"
+    ab cab = 3    "cab", "bcab", "abcab"
+    abc abc = 4   "abc", "cabc", "bcabc", "abcabc"
+    """
+    map = {}
+    count = 0
+    for i in range(len(s)):
+        map[s[i]] = i
+        if len(map) == 3:
+            count += min(map.values()) + 1  # count all left substrings
+    return count
