@@ -4,6 +4,9 @@ from mypkg.string.sliding_window import (
     lengthOfLongestSubstring,
     length_of_longest_substring,
     minWindow,
+    lengthOfLongestSubstringTwoDistinct,
+    lengthOfLongestSubstringTwoDistinct_2,
+    lengthOfLongestSubstringKDistinct,
 )
 
 
@@ -54,3 +57,27 @@ def test_minWindow():
     s = "ab"
     t = "a"
     assert minWindow(s, t) == "a"
+
+
+def test_lengthOfLongestSubstringTwoDistinct():
+    s = "eceba"
+    assert lengthOfLongestSubstringTwoDistinct(s) == 3
+    assert lengthOfLongestSubstringTwoDistinct_2(s) == 3
+
+    s = "ccaabbb"
+    assert lengthOfLongestSubstringTwoDistinct(s) == 5
+    assert lengthOfLongestSubstringTwoDistinct_2(s) == 5
+
+    s = "abaccc"
+    assert lengthOfLongestSubstringTwoDistinct(s) == 4
+    assert lengthOfLongestSubstringTwoDistinct_2(s) == 4
+
+
+def test_lengthOfLongestSubstringKDistinct():
+    s = "eceba"
+    k = 2
+    assert lengthOfLongestSubstringKDistinct(s, k) == 3
+
+    s = "aa"
+    k = 1
+    assert lengthOfLongestSubstringKDistinct(s, k) == 2

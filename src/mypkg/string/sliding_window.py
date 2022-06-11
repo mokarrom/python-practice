@@ -101,6 +101,7 @@ def minWindow(s: str, t: str) -> str:
 
     Time Complexity: O(|S| + |T|)
     Space Complexity: O(|S| + |T|)
+    Ref: https://leetcode.com/problems/minimum-window-substring/
     """
     t_counter = Counter(t)
     w_counter: Dict[str, int] = {}  # this is a frequency counter (<char, frequency>) of the current window.
@@ -133,3 +134,92 @@ def minWindow(s: str, t: str) -> str:
                 count -= 1
 
     return "" if min_len == len(s) + 1 else s[min_start : min_start + min_len]
+
+
+def lengthOfLongestSubstringTwoDistinct(s: "str") -> "int":
+    """Return the length of the longest substring that contains at most two distinct characters.
+
+    Time complexity: O(2n) = O(n)
+    Space complexity: O(1)
+    Ref: https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
+    """
+    dist_counter: Dict[str, int] = dict()
+    left = length = 0
+
+    for right in range(len(s)):
+        ch = s[right]
+        dist_counter[ch] = dist_counter.get(ch, 0) + 1
+
+        # contract window until it gets valid
+        while len(dist_counter) > 2:
+            ch = s[left]
+            if dist_counter[ch] > 1:
+                dist_counter[ch] -= 1
+            else:
+                del dist_counter[ch]
+            left += 1
+
+        # update max length
+        length = max(length, right - left + 1)
+
+    return length
+
+
+def lengthOfLongestSubstringTwoDistinct_2(s: "str") -> "int":
+    """Return the length of the longest substring that contains at most two distinct characters.
+
+    Time complexity: O(n)
+    Space complexity: O(1)
+    Ref: https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
+    """
+    n = len(s)
+    if n < 3:
+        return n
+
+    # sliding window left and right pointers
+    left, right = 0, 0
+
+    dist_chars_map = dict()
+    max_len = 2
+
+    for right in range(n):
+        # expand the window
+        dist_chars_map[s[right]] = right
+
+        if len(dist_chars_map) == 3:
+            # delete the leftmost character
+            del_idx = min(dist_chars_map.values())
+            del dist_chars_map[s[del_idx]]
+
+            # contract the slide window by moving left pointer.
+            left = del_idx + 1
+
+        # update max_len
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
+
+
+def lengthOfLongestSubstringKDistinct(s: str, k: int) -> int:
+    """Return the length of the longest substring of s that contains at most k distinct characters.
+
+    Ref: https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
+    """
+    n = len(s)
+    if n < k:
+        return n
+
+    max_len = left = 0
+    dist_chars_map = {}
+
+    for right in range(n):
+        dist_chars_map[s[right]] = right
+
+        if len(dist_chars_map) == k + 1:
+            del_idx = min(dist_chars_map.values())
+            del dist_chars_map[s[del_idx]]
+            left = del_idx + 1
+
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
