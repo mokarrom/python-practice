@@ -2,6 +2,7 @@
 
 
 class TicTacToe:
+    """Brut Force Tic-tac-toe game. Time: O(n) Space: O(n^2)."""
 
     def __init__(self, n: int):
         self._n = n
@@ -11,9 +12,12 @@ class TicTacToe:
         """Move player with id <player> plays at the cell (row, col) of the board."""
         self._board[row][col] = player
 
-        if self._horizontal_win(row, player) or self._vertical_win(col, player) \
-            or (row == col and self._diagonal_win(player)) \
-            or (col == self._n - 1 - row and self._anti_diagonal_win(player)):
+        if (
+            self._horizontal_win(row, player)
+            or self._vertical_win(col, player)
+            or (row == col and self._diagonal_win(player))
+            or (col == self._n - 1 - row and self._anti_diagonal_win(player))
+        ):
             return player
         # no one wins
         return 0
@@ -44,7 +48,8 @@ class TicTacToe:
 
 
 class TicTacToeOpt:
-    """Tic-tac-toe game."""
+    """Optimized Tic-tac-toe game. Time: O(1) Space: O(n)."""
+
     def __init__(self, n: int):
         self._rows = n * [0]
         self._cols = n * [0]
@@ -67,10 +72,12 @@ class TicTacToeOpt:
             self._anti_diagonal += cur_player
 
         # check if the current player wins
-        if abs(self._rows[row]) == n \
-            or abs(self._cols[col]) == n \
-            or abs(self._diagonal) == n \
-            or abs(self._anti_diagonal) == n:
+        if (
+            abs(self._rows[row]) == n
+            or abs(self._cols[col]) == n
+            or abs(self._diagonal) == n
+            or abs(self._anti_diagonal) == n
+        ):
             return player
 
         # no one wins

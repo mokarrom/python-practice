@@ -3,16 +3,16 @@ from typing import List
 
 
 class Codec:
+    """Strings encoder and decoder."""
+
     SEPARATOR = ":"
 
     def encode(self, strs: List[str]) -> str:
-        """Encodes a list of strings to a single string.
-        """
-        return ''.join(f"%d{Codec.SEPARATOR}%s" % (len(s), s) for s in strs)
+        """Encodes a list of strings to a single string."""
+        return "".join(f"%d{Codec.SEPARATOR}%s" % (len(s), s) for s in strs)
 
     def decode(self, s: str) -> List[str]:
-        """Decodes a single string to a list of strings.
-        """
+        """Decodes a single string to a list of strings."""
         idx = 0
         strs: List[str] = []
 
@@ -20,7 +20,7 @@ class Codec:
             sep_idx = s.find(Codec.SEPARATOR, idx)
             s_len = int(s[idx:sep_idx])
             idx = sep_idx + 1 + s_len
-            strs.append(s[sep_idx + 1: idx])
+            strs.append(s[sep_idx + 1 : idx])
 
         return strs
 

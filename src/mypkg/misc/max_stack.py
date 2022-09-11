@@ -3,7 +3,7 @@ from typing import List
 
 
 class MaxStack:
-    """"A stack that supports push, pop, top, and retrieving the maximum element in constant time."""
+    """A stack that supports push, pop, top, and retrieving the maximum element in constant time."""
 
     def __init__(self):
         self.stack: List[int] = list()
