@@ -41,7 +41,7 @@ class Graph(object):
         self._pretty_print.pprint(self._graph)
 
     def is_connected(self, node1: str, node2: str) -> bool:
-        """Is node1 is connected to node2."""
+        """Check if node1 is connected to node2."""
         return node1 in self._graph and node2 in self._graph[node1]
 
     def find_path(self, node1: str, node2: str) -> List[str]:
@@ -127,6 +127,7 @@ class Graph(object):
         For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
         vertex u comes before v in the ordering. It is a graph traversal in which each node v
         is visited only after all its dependencies are visited.
+        Ref: https://www.youtube.com/watch?v=ddTC4Zovtbc
         """
         seen: Set[str] = set()
         stack: List[str] = list()

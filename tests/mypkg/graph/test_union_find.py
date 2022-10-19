@@ -1,4 +1,5 @@
 from mypkg.graph.union_find import QuickFindUF, QuickUnionUF
+from mypkg.graph.union_find import CountComponents
 
 
 class Test:
@@ -27,3 +28,15 @@ class Test:
 
         uf.union(1, 6)
         assert uf.connected(1, 6)
+
+
+def test_count_components_uf():
+    n = 5
+    edges = [[0, 1], [1, 2], [3, 4]]
+    assert CountComponents.count_components_uf(n, edges) == 2
+    assert CountComponents.count_components_dfs(n, edges) == 2
+
+    n = 5
+    edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
+    assert CountComponents.count_components_uf(n, edges) == 1
+    assert CountComponents.count_components_dfs(n, edges) == 1

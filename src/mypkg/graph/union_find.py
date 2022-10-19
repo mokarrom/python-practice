@@ -1,5 +1,6 @@
 """Union-Find algorithm."""
 from typing import List
+from collections import defaultdict
 
 
 class QuickFindUF:
@@ -83,3 +84,67 @@ class QuickUnionUF:
     def count(self) -> int:
         """Return the number of components."""
         return -1
+
+
+class CountComponents:
+    """323. Number of Connected Components in an Undirected Graph.
+
+    https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+    """
+
+    @staticmethod
+    def count_components_uf(n: int, edges: List[List[int]]) -> int:
+        """Count components using union-find algorithm."""
+        root = [i for i in range(n)]
+        size = [1] * n
+
+        def find(p: int) -> int:
+            node = p
+            while node != root[node]:
+                root[node] = root[root[node]]
+                node = root[node]
+            return node
+
+        def union(p: int, q: int) -> int:
+            p_root, q_root = find(p), find(q)
+
+            if p_root == q_root:
+                return 0
+
+            if size[p_root] < size[q_root]:
+                root[p_root] = q_root
+                size[q_root] += size[p_root]
+            else:
+                root[q_root] = p_root
+                size[p_root] += size[q_root]
+
+            return 1
+
+        comp_count = n
+        for n1, n2 in edges:
+            comp_count -= union(n1, n2)
+
+        return comp_count
+
+    @staticmethod
+    def count_components_dfs(n: int, edges: List[List[int]]) -> int:
+        """Count components using DFS."""
+        visited = [False] * n
+        graph = defaultdict(set)
+        for u, v in edges:
+            graph[u].add(v)
+            graph[v].add(u)
+
+        def dfs(node: int) -> None:
+            visited[node] = True
+            for nei in graph[node]:
+                if not visited[nei]:
+                    dfs(nei)
+
+        comp_count = 0
+        for u in range(n):
+            if not visited[u]:
+                dfs(u)
+                comp_count += 1
+
+        return comp_count
