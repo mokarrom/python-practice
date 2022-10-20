@@ -45,4 +45,5 @@ def test_topological_sort():
     top_sorted_1 = ["A", "B", "C", "E", "H", "D", "F", "G"]
     top_sorted_2 = ["B", "D", "A", "C", "E", "H", "F", "G"]
     graph = Graph(connections, directed=True)
-    assert graph.topological_sort() == top_sorted_1 or top_sorted_2
+    assert graph.topological_sort_dfs() == top_sorted_1 or top_sorted_2
+    assert graph.topological_sort_kahns() == top_sorted_1 or top_sorted_2

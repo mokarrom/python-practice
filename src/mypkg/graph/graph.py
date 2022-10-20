@@ -121,8 +121,32 @@ class Graph(object):
             vertices.union(neighbors)
         return list(vertices)
 
-    def topological_sort(self) -> List[str]:
-        """Return the topological order of vertices.
+    def topological_sort_kahns(self) -> List[str]:
+        """Topological sorting - BFS - Kahn's algorithm."""
+        vertices = list()
+        indeg: Dict[str, int] = defaultdict(int)
+
+        for u in self.get_all_vertices():
+            for v in self._graph[u]:
+                indeg[v] += 1
+
+        zero_indeg: Deque = deque()
+        for u in self.get_all_vertices():
+            if indeg[u] == 0:
+                zero_indeg.append(u)
+
+        while zero_indeg:
+            u = zero_indeg.popleft()
+            vertices.append(u)
+
+            for v in self._graph[u]:
+                indeg[v] -= 1
+                if indeg[v] == 0:
+                    zero_indeg.append(v)
+        return vertices
+
+    def topological_sort_dfs(self) -> List[str]:
+        """Return the topological order of vertices of a DAG. Note that it assumes graph is a DAG.
 
         For a DAG, it is a linear ordering of vertices such that for every directed edge(u, v),
         vertex u comes before v in the ordering. It is a graph traversal in which each node v

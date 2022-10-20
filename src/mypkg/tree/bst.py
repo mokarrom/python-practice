@@ -34,7 +34,7 @@ class BST:
         """Delete the node from BST corresponding to the given value."""
         return self._find_and_delete(self._root, value)
 
-    def _find_and_delete(self, root: Optional[TreeNode], value: int):
+    def _find_and_delete(self, root: Optional[TreeNode], value: int) -> Optional[TreeNode]:
         if root is None:
             return root
 
