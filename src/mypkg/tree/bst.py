@@ -250,29 +250,80 @@ class BST:
         else:
             return False
 
-    def find_inorder_successor(self, value: int) -> Optional[TreeNode]:
-        """Return the in-order successor of a node associated with the given value in a BST."""
-        curr_node = self._find(self._root, value)
-        if curr_node is None:
+    def find_inorder_successor_bst(self, value: int) -> Optional[TreeNode]:
+        """Return the in-order successor of a node associated with the given value in a BST.
+
+        Whenever you go left the current root is the new possible successor, otherwise it remains the same.
+        https://leetcode.com/problems/inorder-successor-in-bst/discuss/72662/*Java*-5ms-short-code-with-explanations
+        Time Complexity: O(N) worst case, skewed tree; for a balance tree O(logN)
+        """
+        successor = None
+        cur_node = self._root
+
+        while cur_node:
+            if value >= cur_node.data:
+                cur_node = cur_node.right
+            else:
+                successor = cur_node
+                cur_node = cur_node.left
+
+        return successor
+
+    def find_inorder_predecessor_bst(self, value: int) -> Optional[TreeNode]:
+        """Return the in-order predecessor of a node associated with the given value in a BST."""
+        predecessor = None
+        cur_node = self._root
+
+        while cur_node:
+            if value <= cur_node.data:
+                cur_node = cur_node.left
+            else:
+                predecessor = cur_node
+                cur_node = cur_node.right
+
+        return predecessor
+
+    def find_inorder_successor_bt(self, value: int) -> Optional[TreeNode]:
+        """Return the in-order successor of a node associated with the given value in a BST.
+
+        Time Complexity: O(N).
+        """
+        target_node = self._find(self._root, value)
+        if target_node is None:
             return None
 
-        if curr_node.right:
+        prev_node = successor = None
+
+        def successor_by_traversal(node: TreeNode) -> None:
+            """Return inorder successor by the standard in-order traversal."""
+            nonlocal prev_node, successor
+            if not node:
+                return None
+
+            # process left child/sub-tree
+            successor_by_traversal(node.left)
+
+            # process root
+            if prev_node == target_node and not successor:
+                successor = node
+                return
+            prev_node = node
+
+            # process right child/sub-tree
+            successor_by_traversal(node.right)
+
+        if target_node.right:
             # Case 1: Node has right subtree.
-            # Left most node, i.e., minimum node, in right subtree is the inorder successor of current node.
-            return self._find_minimum_node(curr_node.right)
+            # Left most node, in right subtree is the inorder successor of current node.
+            left_most = target_node.right
+            while left_most.left:
+                left_most = left_most.left
+                successor = left_most
         else:
             # Case 2: No right subtree.
-            # Go to the nearest ancestor for which given node would be in left subtree.
-            successor = None
-            ancestor = self._root
-            assert isinstance(ancestor, TreeNode)
-            while ancestor != curr_node:
-                if curr_node.data < ancestor.data:
-                    successor = ancestor  # so far this is the deepest node for which current node is in the left.
-                    ancestor = ancestor.left
-                else:
-                    ancestor = ancestor.right
-            return successor
+            #  Perform the standard inorder traversal and keep track of the previous node.
+            successor_by_traversal(self._root)
+        return successor
 
     def display(self) -> List[int]:
         """Return a serialized format of a binary tree using level order traversal.
