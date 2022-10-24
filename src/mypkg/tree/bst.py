@@ -221,11 +221,17 @@ class BST:
         def _is_valid2(curr_node: Optional[TreeNode], prev_node: Optional[TreeNode]) -> bool:
             if curr_node is None:
                 return True
+
+            # process left child
             if not _is_valid2(curr_node.left, prev_node):
                 return False
+
+            # process root
             if prev_node and curr_node.data < prev_node.data:
                 return False
             prev_node = curr_node
+
+            # process right child
             if not _is_valid2(curr_node.right, prev_node):
                 return False
 
